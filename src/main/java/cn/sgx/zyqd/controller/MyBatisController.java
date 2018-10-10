@@ -1,40 +1,25 @@
 package cn.sgx.zyqd.controller;
 
+import cn.sgx.zyqd.mybatis.vo.StationDataVo;
+import cn.sgx.zyqd.service.StationDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.sgx.zyqd.service.CatService;
-import cn.sgx.zyqd.mybatis.vo.Cat;
+import java.util.List;
+
 
 @RestController
 public class MyBatisController {
 
     @Autowired
-    private CatService catService;
+    private StationDataService stationDataService;
 
-    @GetMapping(value = "/queryById/{id}")
-    public Cat queryById(@PathVariable(value = "id") Integer id) {
-        return catService.queryById(id);
+    @GetMapping(value = "/StationDataVo/{id}")
+    public List<StationDataVo> queryById(@PathVariable(value = "limitWeight") Integer limitWeight) {
+        return stationDataService.queryByITotalWeight(limitWeight);
     }
 
-    @PostMapping(value = "/insert")
-    public Integer queryById(@RequestBody Cat cat) {
-        return catService.insert(cat);
-    }
 
-    @PutMapping(value = "/update")
-    public Integer updateById(@RequestBody Cat cat) {
-        return catService.update(cat);
-    }
-
-    @DeleteMapping(value = "/delete/{id}")
-    public Integer deleteById(@PathVariable(value = "id") Integer id) {
-        return catService.delete(id);
-    }
 }

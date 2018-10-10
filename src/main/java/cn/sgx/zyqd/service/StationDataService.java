@@ -5,6 +5,8 @@ import cn.sgx.zyqd.mybatis.vo.StationDataVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class StationDataService {
@@ -12,20 +14,9 @@ public class StationDataService {
     @Autowired
     private StationDataDAO dao;
 
-    public StationDataVo queryById(Integer id) {
-        return dao.queryById(id);
+    public List<StationDataVo> queryByITotalWeight(Integer limitWeight) {
+        return dao.queryByITotalWeight(limitWeight);
     }
 
-    public Integer insert(StationDataVo cat) {
-        return dao.insert(cat);
-    }
-
-    public Integer update(StationDataVo cat) {
-        return dao.updateById(cat);
-    }
-
-    public Integer delete(Integer id) {
-        return dao.deleteById(id);
-    }
 
 }

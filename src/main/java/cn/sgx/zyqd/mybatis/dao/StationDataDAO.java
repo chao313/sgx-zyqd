@@ -5,15 +5,11 @@ import org.springframework.stereotype.Component;
 
 import cn.sgx.zyqd.mybatis.vo.StationDataVo;
 
+import java.util.List;
+
 @Component
 public interface StationDataDAO {
 
-    StationDataVo queryById(@Param(value = "catId") Integer id);
-
-    Integer insert(StationDataVo cat);
-
-    Integer updateById(StationDataVo cat);
-
-    Integer deleteById(@Param(value = "catId") Integer id);
+    List<StationDataVo> queryByITotalWeight(@Param(value = "limitWeight") Integer limitWeight);
 
 }

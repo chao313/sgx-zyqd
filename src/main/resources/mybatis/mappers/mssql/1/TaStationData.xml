@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sgx.zyqd.mybatis.dao.StationDataDAO">
+
+    <select id="queryById" parameterType="java.lang.Integer"
+            resultType="cn.sgx.zyqd.mybatis.vo.StationDataVo">
+        SELECT id , name , age from t_cat WHERE id = #{catId}
+
+   </select>
+
+    <update id="updateById" parameterType="cn.sgx.zyqd.mybatis.vo.Cat">
+
+        UPDATE t_cat set name = #{name} , age = #{age} WHERE id = #{id}
+
+    </update>
+
+    <insert id="insert" parameterType="cn.sgx.zyqd.mybatis.vo.Cat">
+         insert t_cat (name , age) values(#{name} , #{age})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM t_cat WHERE  id = #{catId}
+    </delete>
+</mapper>

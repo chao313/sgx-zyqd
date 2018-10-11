@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,15 +37,15 @@ public class ScanPicService {
             for (int i = 0; i < fileNames.length; i++) {
                 //以当天日期开头，并且以.jpg结尾
                 if (fileNames[i].startsWith(todayTime) && fileNames[i].endsWith(suffix)) {
-                    File picFile = new File(fileNames[i]);
-                    FileInputStream fileInputStream = null;
-                    fileInputStream = new FileInputStream(picPath + picFile);
+                    File picFile = new File(picPath + fileNames[i]);
+                    FileInputStream fileInputStream = new FileInputStream(picFile);
                     byte[] picBIn = FileUtil.toByteArray(fileInputStream);
                     fileInputStream.close();
                     //数据注入
                     PicDataVo vo = new PicDataVo();
                     vo.setPicBin(picBIn);
                     vo.setPicName(fileNames[i]);
+                    vo.setLastModified(picFile.lastModified());
                     picDataVos.add(vo);
 
                     logger.info("【ScanPicService】正在处理的图片文件:{} total:{}", fileNames[i], fileNames.length);
@@ -62,4 +60,5 @@ public class ScanPicService {
     public String getPicPath() {
         return picPath;
     }
+
 }

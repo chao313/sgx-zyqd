@@ -4,8 +4,8 @@
 <mapper namespace="cn.sgx.zyqd.mybatis.dao.PicDataDAO">
 
     <insert id="insert" parameterType="cn.sgx.zyqd.mybatis.vo.PicDataVo">
-        INSERT INTO [dbo].[sgx_pic_data]([id], [pic_name], [pic_bin])
-        VALUES (#{id}, #{picName}, #{picBin});
+        INSERT INTO [dbo].[sgx_pic_data]( [pic_name], [pic_bin] , [lastModified])
+        VALUES (#{picName}, #{picBin} , #{lastModified});
     </insert>
 
     <select id="select"
@@ -15,6 +15,7 @@
             id AS id ,
             pic_name AS picName ,
             pic_bin AS picBin ,
+            lastModified AS lastModified
             FROM [dbo].[sgx_pic_data]
    </select>
 

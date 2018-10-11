@@ -57,9 +57,9 @@ public class MyBatisController {
         return response;
     }
 
-    @GetMapping(value = "/picDataService/scanDir")
+    @GetMapping(value = "/picDataService/savePicDataVos")
     public Response picDataService_scanDir() {
-        logger.info("【扫描文件夹】scanPicService/scanDir :{}", scanPicService.getPicPath());
+        logger.info("【扫描文件夹 && 存入数据库 】scanPicService/scanDir :{}", scanPicService.getPicPath());
         Response<List<PicDataVo>> response = new Response<>();
         try {
             response.setCode(Code.System.OK);
@@ -67,13 +67,13 @@ public class MyBatisController {
             List<PicDataVo> vos = scanPicService.scanDir();
             logger.info("【扫描文件夹】成功 vos:{}", vos);
             picDataService.savePicDataVos(vos);
+            logger.info("【存入数据库】成功 vos:{}", vos);
             response.setContent(vos);
-
         } catch (Exception e) {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("【扫描文件夹】失败 path:{}", scanPicService.getPicPath(), e);
+            logger.info("【【扫描文件夹 && 存入数据库 】path:{}", scanPicService.getPicPath(), e);
         }
         return response;
     }

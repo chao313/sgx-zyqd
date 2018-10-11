@@ -1,0 +1,14 @@
+SHCS0000000300000366
+<Root Type="101"
+      Time="2017-07-14 15:53:00.000">
+    <Data SystemNO="32111100600220170714134617767000"
+          CheckType="1"
+          WorkDate="2017-07-01"
+          PassTime="2017-07-14 13:46:17.767"
+          StationID="3211110060"
+          RoadID="1"
+          WeightNum="21000"
+          PlateNO="苏A123456"
+          PlateColor="黄">
+    </Data>
+</Root>

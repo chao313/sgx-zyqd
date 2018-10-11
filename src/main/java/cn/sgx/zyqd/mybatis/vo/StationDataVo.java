@@ -8,10 +8,10 @@ import java.sql.Timestamp;
 @Data
 @ToString
 public class StationDataVo {
-    Integer iLane; //车道号
-    Timestamp dtPassTime; //经过时间
-    Integer iTotalWeight; //总重
-    String szVehicleLicense; //车牌
+    private Integer iLane; //车道号
+    private Timestamp dtPassTime; //经过时间
+    private Integer iTotalWeight; //总重
+    private String szVehicleLicense; //车牌
 }
 
 

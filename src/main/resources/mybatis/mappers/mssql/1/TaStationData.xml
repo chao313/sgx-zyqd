@@ -11,7 +11,8 @@
             dtPassTime AS dtPassTime ,
             iTotalWeight AS iTotalWeight ,
             szVehicleLicense AS szVehicleLicense
-            FROM ta_StationData WHERE iTotalWeight > #{limitWeight};
+            FROM ta_StationData
+            WHERE iTotalWeight > #{limitWeight};
    </select>
 
 </mapper>

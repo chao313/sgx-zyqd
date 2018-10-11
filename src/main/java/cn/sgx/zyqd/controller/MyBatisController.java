@@ -6,6 +6,7 @@ import cn.sgx.zyqd.mybatis.vo.PicDataVo;
 import cn.sgx.zyqd.mybatis.vo.StationDataVo;
 import cn.sgx.zyqd.service.PicDataService;
 import cn.sgx.zyqd.service.ScanPicService;
+import cn.sgx.zyqd.service.SocketPushService;
 import cn.sgx.zyqd.service.StationDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +33,35 @@ public class MyBatisController {
     @Autowired
     private ScanPicService scanPicService;
 
+    @Autowired
+    private SocketPushService socketPushService;
+
     @GetMapping(value = "/stationDataService/queryByITotalWeight/{limitWeight}")
     public List<StationDataVo> getStationDataVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight) {
         return stationDataService.queryByITotalWeight(limitWeight);
+    }
+
+    @GetMapping(value = "/SocketPushService/push/{limitWeight}")
+    public Response SocketPushService_push
+            (@PathVariable(value = "limitWeight") Integer limitWeight) {
+        logger.info("【socket push】scanPicService/scanDir :{}", scanPicService.getPicPath());
+        Response<Boolean> response = new Response<>();
+        try {
+            response.setCode(Code.System.OK);
+            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+            List<StationDataVo> vos =
+                    stationDataService.queryByITotalWeight(limitWeight);
+            logger.info("【socket push : stationDataVos 】成功 vos:{}", vos);
+            socketPushService.push(vos);
+            response.setContent(true);
+
+        } catch (Exception e) {
+            response.setCode(Code.System.FAIL);
+            response.setMsg(e.toString());
+            response.addException(e);
+            logger.info("【socket push】失败 path:{}", scanPicService.getPicPath(), e);
+        }
+        return response;
     }
 
 

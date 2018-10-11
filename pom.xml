@@ -122,6 +122,14 @@
             <version>3.8.1</version>
         </dependency>
 
+        <!--
+       freemarker依赖
+       -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
     </dependencies>
 
 

@@ -13,10 +13,12 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static final String DATE_TIME_SHORT_FORMAT = "yyyyMMddHHmm";
     public static final String DATE_TIMESTAMP_SHORT_FORMAT = "yyyyMMddHHmmss";
     public static final String DATE_TIMESTAMP_LONG_FORMAT = "yyyyMMddHHmmssS";
+    public static final String DATE_TIMESTAMP_LONG_LONG_FORMAT = "yyyyMMddHHmmssSSS";
     public static final String DATE_CH_FORMAT = "yyyy年MM月dd日";
 
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static final String TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.S";
+    public static final String TIMESTAMP_LONG_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String TIME_FORMAT = "HH:mm:ss";
     public static final String TIME_SHORT_FORMAT = "HHmmss";

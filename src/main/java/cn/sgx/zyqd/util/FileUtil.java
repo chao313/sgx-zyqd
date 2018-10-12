@@ -12,9 +12,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Created by chao
@@ -108,16 +105,4 @@ public class FileUtil {
 //        }
 //    }
 
-    public static String getFileContentType(File file) throws IOException {
-        Path path = Paths.get(file.getPath());
-        String contentType = "";
-        try {
-            contentType = Files.probeContentType(path);
-            logger.debug("======>contentType:{}", contentType);
-        } catch (IOException e) {
-            logger.error("获取文件类型出错!", e);
-            throw e;
-        }
-        return contentType;
-    }
 }

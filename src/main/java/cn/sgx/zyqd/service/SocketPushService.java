@@ -44,7 +44,7 @@ public class SocketPushService {
             socket = new Socket(ip, port, null, localPort);
         }
         for (int i = 0; i < vos.size(); i++) {
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<String, Object>();
             DataVo dataVo = new DataVo();
             BeanUtils.copyProperties(vos.get(i), dataVo);
             dataVo.init(stationID, vos.get(i).getILane(), vos.get(i).getITotalWeight());

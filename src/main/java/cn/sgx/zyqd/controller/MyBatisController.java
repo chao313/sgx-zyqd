@@ -45,7 +45,7 @@ public class MyBatisController {
     public Response SocketPushService_push
             (@PathVariable(value = "limitWeight") Integer limitWeight) {
         logger.info("【socket push】scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
-        Response<Boolean> response = new Response<>();
+        Response<Boolean> response = new Response<Boolean>();
         try {
             response.setCode(Code.System.OK);
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
@@ -69,7 +69,7 @@ public class MyBatisController {
     @GetMapping(value = "/scanPicService/scanDir")
     public Response scanPicService_scanDir() {
         logger.info("【扫描文件夹】scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
-        Response<List<PicDataVo>> response = new Response<>();
+        Response<List<PicDataVo>> response = new Response<List<PicDataVo>>();
         try {
             response.setCode(Code.System.OK);
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
@@ -88,7 +88,7 @@ public class MyBatisController {
     @GetMapping(value = "/picDataService/savePicDataVos")
     public Response picDataService_scanDir() {
         logger.info("【扫描文件夹 && 存入数据库 】scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
-        Response<List<PicDataVo>> response = new Response<>();
+        Response<List<PicDataVo>> response = new Response<List<PicDataVo>>();
         try {
             response.setCode(Code.System.OK);
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);

@@ -17,7 +17,7 @@ public class Response<T> {
     private String msg;
     private String error;
     private List<Exception> exceptions
-            = new ArrayList<>();
+            = new ArrayList<Exception>();
     private T content;
 
     public Response() {

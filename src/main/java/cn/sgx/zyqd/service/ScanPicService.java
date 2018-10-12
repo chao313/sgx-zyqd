@@ -34,7 +34,7 @@ public class ScanPicService {
      */
     public List<PicDataVo> scanDirAndGetTodayPicNotInSql() throws Exception {
         File file = new File(picPath);
-        List<PicDataVo> picDataVos = new ArrayList<>();
+        List<PicDataVo> picDataVos = new ArrayList<PicDataVo>();
         if (!file.isDirectory()) {
             logger.error("【ScanPicService】指定目录不是文件夹：{}", picPath);
             String message = MessageFormat.format("指定目录不是文件夹{0}", picPath);
@@ -78,7 +78,7 @@ public class ScanPicService {
     private String[] filterfileNames(String[] fileNames) {
         List<String> fileNameList = Arrays.asList(fileNames);
         List<String> todayPicNameList = picDataService.getTodayPicNames();
-        Collection exists= new ArrayList<>(fileNameList);
+        Collection exists= new ArrayList<String>(fileNameList);
         exists.removeAll(todayPicNameList);
         String[] result = new String[exists.size()];
         exists.toArray(result);

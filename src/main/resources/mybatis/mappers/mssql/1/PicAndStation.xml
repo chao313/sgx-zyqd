@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.sgx.zyqd.mybatis.dao.StationDataDAO">
+<mapper namespace="cn.sgx.zyqd.mybatis.dao.PicAndStationDAO">
 
     <select id="queryByITotalWeight"
             parameterType="java.lang.Integer"
-            resultType="cn.sgx.zyqd.mybatis.vo.StationDataVo">
+            resultType="cn.sgx.zyqd.mybatis.vo.PicAndStationVo">
             SELECT
             iLane AS iLane ,
             dtPassTime AS dtPassTime ,
             iTotalWeight AS iTotalWeight ,
             szVehicleLicense AS szVehicleLicense
-            pic_bin AS picBin
-            FROM ta_StationData join 
-            WHERE iTotalWeight > #{limitWeight}
-            AND
+            FROM ta_StationData
+            WHERE iTotalWeight > #{limitWeight};
    </select>
 
 </mapper>

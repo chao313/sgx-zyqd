@@ -9,7 +9,7 @@ SHCS${data.no}00000911
           IsReverse="0"
           CarType="1"
           WeightStd="0"
-          WeightNum=""
+          WeightNum="${data.weightNum}"
           WeightStdOS="0"
           AxisNum="0"
           AxisStruct=""

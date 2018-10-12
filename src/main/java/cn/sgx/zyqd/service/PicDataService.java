@@ -14,6 +14,7 @@ public class PicDataService {
     @Autowired
     private PicDataDAO dao;
 
+
     public boolean savePicDataVos(List<PicDataVo> vos) {
         for (int i = 0; i < vos.size(); i++) {
             dao.insert(vos.get(i));
@@ -23,6 +24,10 @@ public class PicDataService {
 
     public List<PicDataVo> get() {
         return dao.get();
+    }
+
+    public List<String> getTodayPicNames() {
+        return dao.getTodayPicNames();
     }
 
 

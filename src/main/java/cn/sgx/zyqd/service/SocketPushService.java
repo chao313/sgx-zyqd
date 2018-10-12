@@ -23,7 +23,7 @@ public class SocketPushService {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Value(value = "${socket.ip}")
     private String ip;
-    @Value(value = "${socket.port}")
+    @Value(value = "${socket.port.server}")
     private Integer port;
     @Value(value = "${socket.xml.data}")
     private String dataXml;
@@ -31,6 +31,8 @@ public class SocketPushService {
     private String picXml;
     @Value(value = "${socket.stationID}")
     private String stationID;
+    @Value(value = "${socket.port.local}")
+    private Integer localPort;
 
 
     private Socket socket;
@@ -39,13 +41,13 @@ public class SocketPushService {
 
         //创建客户端Socket，指定服务器地址和端口
         if (null == socket || socket.isClosed()) {
-            socket = new Socket(ip, port);
+            socket = new Socket(ip, port, null, localPort);
         }
         for (int i = 0; i < vos.size(); i++) {
             Map<String, Object> map = new HashMap<>();
             DataVo dataVo = new DataVo();
             BeanUtils.copyProperties(vos.get(i), dataVo);
-            dataVo.init(stationID,vos.get(i).getILane(),vos.get(i).getITotalWeight());
+            dataVo.init(stationID, vos.get(i).getILane(), vos.get(i).getITotalWeight());
             map.put("data", dataVo);
             StringBuffer buffer = FreemarkUtil.generateXmlByTemplate(map, dataXml);
             logger.info("写入的数据：{}", buffer);

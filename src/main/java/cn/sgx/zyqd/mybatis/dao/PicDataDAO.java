@@ -11,4 +11,6 @@ public interface PicDataDAO {
     boolean insert(PicDataVo vo);
 
     List<PicDataVo> get();
+
+    List<String> getTodayPicNames();
 }

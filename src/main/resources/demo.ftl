@@ -9,7 +9,7 @@ SHCS0000001100000910
           IsReverse="0"
           CarType="1"
           WeightStd="0"
-          WeightNum="49300"
+          WeightNum=""
           WeightStdOS="0"
           AxisNum="0"
           AxisStruct=""

@@ -42,8 +42,8 @@ public class Test {
     public static void main(String[] args) throws IOException {
 
         //创建客户端Socket，指定服务器地址和端口
-        Socket socket = new Socket("106.14.225.153", 7712);
-
+        Socket socket = new Socket("106.14.225.153", 7712,null,65500);
+        logger.info("local port : {}",socket.getLocalPort());
         //获取输出流，向服务器端发送信息
         OutputStream os = socket.getOutputStream();//字节输出流
         File file = ResourceUtils.getFile("classpath:demo.ftl");

@@ -11,8 +11,10 @@
             dtPassTime AS dtPassTime ,
             iTotalWeight AS iTotalWeight ,
             szVehicleLicense AS szVehicleLicense
-            FROM ta_StationData
-            WHERE iTotalWeight > #{limitWeight};
+            FROM ta_StationData join [dbo].[sgx_pic_data]
+              on ta_StationData.szVehicleLicense = [dbo].[sgx_pic_data].szVehicleLicense
+
+        WHERE iTotalWeight > #{limitWeight};
    </select>
 
 </mapper>

@@ -10,11 +10,10 @@
             iLane AS iLane ,
             dtPassTime AS dtPassTime ,
             iTotalWeight AS iTotalWeight ,
-            szVehicleLicense AS szVehicleLicense
+            szVehicleLicense AS szVehicleLicense ,
             pic_bin AS picBin
-            FROM ta_StationData join 
+            FROM ta_StationData
             WHERE iTotalWeight > #{limitWeight}
-            AND
    </select>
 
 </mapper>

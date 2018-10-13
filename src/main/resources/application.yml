@@ -1,5 +1,6 @@
 ##控制使用哪个配置
 spring:
      profiles:
-       active: 10.20.224.195
+       active: 10.20.226.22
+#       active: 10.20.224.195
 #        active: dev

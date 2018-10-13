@@ -5,7 +5,7 @@ server:
 #数据源
 jdbc:
   driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
-  url: jdbc:microsoft:sqlserver://10.20.224.195:1433;DatabaseName=BakLaneDB
+  url: jdbc:microsoft:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
 

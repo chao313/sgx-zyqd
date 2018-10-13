@@ -1,5 +1,6 @@
 package cn.sgx.zyqd.mybatis.dao;
 
+import cn.sgx.zyqd.mybatis.vo.PicAndStationVo;
 import cn.sgx.zyqd.mybatis.vo.StationDataVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,15 @@ import java.util.List;
 @Component
 public interface PicAndStationDAO {
 
-    List<StationDataVo> queryByITotalWeight(@Param(value = "limitWeight") Integer limitWeight);
+    /**
+     * 查询当天的数据
+     * 查询未发送的数据
+     * @param limitWeight
+     * @return
+     */
+    List<PicAndStationVo> queryByITotalWeight(@Param(value = "limitWeight") Integer limitWeight);
+
+
+
 
 }

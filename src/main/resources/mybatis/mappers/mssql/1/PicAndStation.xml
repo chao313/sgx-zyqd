@@ -6,15 +6,23 @@
     <select id="queryByITotalWeight"
             parameterType="java.lang.Integer"
             resultType="cn.sgx.zyqd.mybatis.vo.PicAndStationVo">
-            SELECT
-            iLane AS iLane ,
-            dtPassTime AS dtPassTime ,
-            iTotalWeight AS iTotalWeight ,
-            szVehicleLicense AS szVehicleLicense
-            FROM ta_StationData join [dbo].[sgx_pic_data]
-              on ta_StationData.szVehicleLicense = [dbo].[sgx_pic_data].szVehicleLicense
-
-        WHERE iTotalWeight > #{limitWeight};
+        SELECT
+        dtPassTime AS dtPassTime ,
+        iLane AS iLane ,
+        iTotalWeight AS iTotalWeight ,
+        szVehicleLicense AS szVehicleLicense,
+        sgx_pic_data.id AS id,
+        pic_bin AS picBin
+        from(
+        SELECT
+         [dtPassTime]
+        ,[iLane]
+        ,[iTotalWeight]
+        ,[szVehicleLicense]
+        FROM [WOpenFerry].[dbo].[ta_StationData]
+        WHERE CONVERT(VARCHAR(100),[WOpenFerry].[dbo].[ta_StationData].[dtPassTime],112) = CONVERT(VARCHAR(100),GETDATE(),112)
+        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense = sgx_pic_data.szVehicleLicenseFromName
+        AND sgx_pic_data.isSended = 0 AND iTotalWeight > #{limitWeight};
    </select>
 
 </mapper>

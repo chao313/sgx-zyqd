@@ -29,6 +29,10 @@
             WHERE yyyyMMddTimeFromName  = convert(varchar(100),GETDATE(),112)
    </select>
 
+    <update id="updateStatusByID"  parameterType="java.lang.Integer">
+        update [dbo].[sgx_pic_data] set  [isSended] = 1 where id = #{id};
+    </update>
+
 
 
 </mapper>

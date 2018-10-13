@@ -30,5 +30,11 @@ public class PicDataService {
         return dao.getTodayPicNames();
     }
 
+   public boolean updateStatusByID( Integer id){
+        return  dao.updateStatusByID(id) >0 ? true:false;
+    }
+
+
+
 
 }

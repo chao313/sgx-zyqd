@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 
 @Data
 public class PicAndStationVo {
+    private Integer id;//picData的编号
     private Integer iLane; //车道号
     private Timestamp dtPassTime; //经过时间
     private Integer iTotalWeight; //总重

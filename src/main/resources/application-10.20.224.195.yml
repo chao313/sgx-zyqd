@@ -1,17 +1,16 @@
-## dev环境使用是配置
 server:
-  port: 8082
+  port: 8081
   context-path: /chao
 
 #数据源
 jdbc:
-  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-  url: jdbc:sqlserver://10.20.226.22:1433;databaseName=BakLaneDB
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=BakLaneDB
   userName: sa
   password: coing
 
 pic:
-  path: D:\result\192.168.0.195\
+  path: D:\result\192.168.0.195\Record
   type: .jpg
 timer:
   scandir: 0 0/1 * * * *
@@ -26,13 +25,6 @@ socket:
     server: 7712
     local: 65500
   xml:
-    data: data.ftl
-    pic: pic.xml
-
-
-
-
-
-
-
+     data: data.ftl
+     pic: pic.xml
 

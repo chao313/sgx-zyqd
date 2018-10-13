@@ -40,20 +40,6 @@
             <scope>test</scope>
         </dependency>
         <!--
-		注意jpa，数据持久配置
-		-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <!--
-        mysql的依赖
-        -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!--
         Swagger依赖
         -->
         <dependency>
@@ -97,10 +83,32 @@
         <!--
         https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
         -->
+        <!--<dependency>-->
+            <!--<groupId>com.microsoft.sqlserver</groupId>-->
+            <!--<artifactId>sqljdbc4</artifactId>-->
+            <!--<version>4.0</version>-->
+        <!--</dependency>-->
+
+        <!--
+        为了低级的sqlserver
+        https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+        -->
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <!-- https://mvnrepository.com/artifact/com.microsoft.jdbc.sqlserver/msbase -->
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>4.0</version>
+            <groupId>sql2000</groupId>
+            <artifactId>msbase</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>sql2000</groupId>
+            <artifactId>msutil</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>sql2000</groupId>
+            <artifactId>mssqlserver</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <!--

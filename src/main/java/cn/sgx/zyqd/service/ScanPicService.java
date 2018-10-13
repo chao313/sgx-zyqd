@@ -36,8 +36,8 @@ public class ScanPicService {
         File file = new File(picPath);
         List<PicDataVo> picDataVos = new ArrayList<PicDataVo>();
         if (!file.isDirectory()) {
-            logger.error("【ScanPicService】指定目录不是文件夹：{}", picPath);
-            String message = MessageFormat.format("指定目录不是文件夹{0}", picPath);
+            logger.error("【ScanPicService】 the path is not dir ：{}", picPath);
+            String message = MessageFormat.format("the path is not dir {0}", picPath);
             throw new Exception(message);
         } else {
             String todayTime = DateUtils.getFormatDateTime(new Date(), DateUtils.DATE_SHORT_FORMAT);
@@ -58,7 +58,7 @@ public class ScanPicService {
                     vo.init();
                     picDataVos.add(vo);
 
-                    logger.info("【ScanPicService】正在处理的图片文件:{} total:{}", fileNames[i], fileNames.length);
+                    logger.info("【ScanPicService】the pic is dealing :{} ,the num is :{} , total:{}", fileNames[i], i , fileNames.length);
 
                 }
             }

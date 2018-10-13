@@ -36,7 +36,7 @@ public class ScanPicService {
         File file = new File(picPath);
         List<PicDataVo> picDataVos = new ArrayList<PicDataVo>();
         if (!file.isDirectory()) {
-            logger.error("【ScanPicService】 the path is not dir ：{}", picPath);
+            logger.error("[ ScanPicService ] the path is not dir :{}", picPath);
             String message = MessageFormat.format("the path is not dir {0}", picPath);
             throw new Exception(message);
         } else {
@@ -58,7 +58,7 @@ public class ScanPicService {
                     vo.init();
                     picDataVos.add(vo);
 
-                    logger.info("【ScanPicService】the pic is dealing :{} ,the num is :{} , total:{}", fileNames[i], i , fileNames.length);
+                    logger.info("[ ScanPicService ] the pic is dealing :{} ,the num is :{} , total:{}", fileNames[i], i , fileNames.length);
 
                 }
             }

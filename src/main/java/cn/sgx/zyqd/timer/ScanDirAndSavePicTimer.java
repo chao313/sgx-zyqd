@@ -30,9 +30,9 @@ public class ScanDirAndSavePicTimer {
             List<PicDataVo> picDataVos =
                     scanPicService.scanDirAndGetTodayPicNotInSql();
             picDataService.savePicDataVos(picDataVos);
-            logger.info("【Timer Task】sacn dir:{},pic today not in sql is ：{}", scanPicService.getPicPath(), picDataVos);
+            logger.info("[Timer Task ] sacn dir:{},pic today not in sql is : {}", scanPicService.getPicPath(), picDataVos);
         } catch (Exception e) {
-            logger.error("【Timer Task】sacn dir fail:{}", scanPicService.getPicPath(), e);
+            logger.error("[Timer Task ] sacn dir fail:{}", scanPicService.getPicPath(), e);
         }
     }
 }

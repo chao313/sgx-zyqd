@@ -11,6 +11,10 @@ jdbc:
 
 
 
+http:
+  limitWeigeht: 4900
+  limit: 5
+  host: http://localhost:65500/chao
 
 
 ##前置机无用和web无用
@@ -20,6 +24,8 @@ pic:
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?
+  ##每分钟执行一次
+  push: 0 0/1 * * * *
 
 
 

@@ -55,7 +55,7 @@ public class MyBatisController {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("[getStationDataVoByLimitWeight ]失败 path:{}", e.getMessage(), e);
+            logger.error("[getStationDataVoByLimitWeight ]FAIL path:{}", e.getMessage(), e);
         }
         return response;
     }
@@ -78,7 +78,30 @@ public class MyBatisController {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("[getPicStationVoByLimitWeight ]失败 path:{}", e.getMessage(), e);
+            logger.error("[getPicStationVoByLimitWeight ]FAIL path:{}", e.getMessage(), e);
+        }
+        return response;
+    }
+
+    @ApiOperation(value = "查询当天的，没有发送成功的数据,限制查询的limit", notes = "查询当天的，没有发送成功的数据，限制查询的limit")
+    @GetMapping(value = "/picAndStation/queryByITotalWeightLimit/{limitWeight}/{limit}")
+    public Response getPicStationVoByLimitWeightLimit(@PathVariable(value = "limitWeight") Integer limitWeight,
+                                                      @PathVariable(value = "limit") Integer limit) {
+        logger.info("[ getPicStationVoByLimitWeight ] stationDataService/queryByITotalWeight ");
+        Response<List<PicAndStationVo>> response = new Response<>();
+        try {
+            response.setCode(Code.System.OK);
+            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+            List<PicAndStationVo> vos =
+                    picAndStationService.queryByITotalWeightLimit(limitWeight,limit);
+            logger.info("[ queryByITotalWeightLimit : PicAndStationVo  ]成功 vos:{}", vos);
+            response.setContent(vos);
+
+        } catch (Exception e) {
+            response.setCode(Code.System.FAIL);
+            response.setMsg(e.toString());
+            response.addException(e);
+            logger.error("[queryByITotalWeightLimit ]FAIL path:{}", e.getMessage(), e);
         }
         return response;
     }
@@ -93,14 +116,14 @@ public class MyBatisController {
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
            boolean bool =
                     picDataService.updateStatusByID(id);
-            logger.info("[ updatePicDataById :   ]成功 vos:{}", bool);
+            logger.info("[ updatePicDataById :   ]SUCCESS vos:{}", bool);
             response.setContent(bool);
 
         } catch (Exception e) {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("[updatePicDataById ]失败 path:{}", e.getMessage(), e);
+            logger.error("[updatePicDataById ]FAIL path:{}", e.getMessage(), e);
         }
         return response;
     }
@@ -115,7 +138,7 @@ public class MyBatisController {
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
             List<StationDataVo> vos =
                     stationDataService.queryByITotalWeight(limitWeight);
-            logger.info("[ socket push : stationDataVos  ]成功 vos:{}", vos);
+            logger.info("[ socket push : stationDataVos  ]SUCCESS vos:{}", vos);
             socketPushService.push(vos);
             response.setContent(true);
 
@@ -123,7 +146,7 @@ public class MyBatisController {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("[ socket push ]失败 path:{}", scanPicService.getPicPath(), e);
+            logger.error("[ socket push ]FAIL path:{}", scanPicService.getPicPath(), e);
         }
         return response;
     }
@@ -139,12 +162,12 @@ public class MyBatisController {
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
             List<PicDataVo> vos = scanPicService.scanDirAndGetTodayPicNotInSql();
             response.setContent(vos);
-            logger.info("[ 扫描文件夹 ]成功 vos:{}", vos);
+            logger.info("[ 扫描文件夹 ]SUCCESS vos:{}", vos);
         } catch (Exception e) {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("[ 扫描文件夹 ]失败 path:{}", scanPicService.getPicPath(), e);
+            logger.error("[ 扫描文件夹 ]FAIL path:{}", scanPicService.getPicPath(), e);
         }
         return response;
     }
@@ -157,15 +180,15 @@ public class MyBatisController {
             response.setCode(Code.System.OK);
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
             List<PicDataVo> vos = scanPicService.scanDirAndGetTodayPicNotInSql();
-            logger.info("[ 扫描文件夹 ]成功 vos:{}", vos);
+            logger.info("[ 扫描文件夹 ]SUCCESS vos:{}", vos);
             picDataService.savePicDataVos(vos);
-            logger.info("[ 存入数据库 ]成功 vos:{}", vos);
+            logger.info("[ 存入数据库 ]SUCCESS vos:{}", vos);
             response.setContent(vos);
         } catch (Exception e) {
             response.setCode(Code.System.FAIL);
             response.setMsg(e.toString());
             response.addException(e);
-            logger.info("[ 扫描文件夹 && 存入数据库  ]path:{}", scanPicService.getPicPath(), e);
+            logger.error("[ 扫描文件夹 && 存入数据库  ]path:{}", scanPicService.getPicPath(), e);
         }
         return response;
     }

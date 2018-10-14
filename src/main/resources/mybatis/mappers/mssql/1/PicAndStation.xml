@@ -25,4 +25,28 @@
         AND sgx_pic_data.isSended = 0 AND iTotalWeight > #{limitWeight};
    </select>
 
+    <select id="queryByITotalWeightLimit"
+            parameterType="java.lang.Integer"
+            resultType="cn.sgx.zyqd.mybatis.vo.PicAndStationVo">
+        SELECT
+        TOP #{limit}
+        dtPassTime AS dtPassTime ,
+        iLane AS iLane ,
+        iTotalWeight AS iTotalWeight ,
+        szVehicleLicense AS szVehicleLicense,
+        sgx_pic_data.id AS id,
+        pic_bin AS picBin
+        from(
+        SELECT
+         [dtPassTime]
+        ,[iLane]
+        ,[iTotalWeight]
+        ,[szVehicleLicense]
+        FROM [WOpenFerry].[dbo].[ta_StationData]
+        WHERE CONVERT(VARCHAR(100),[WOpenFerry].[dbo].[ta_StationData].[dtPassTime],112) = CONVERT(VARCHAR(100),GETDATE(),112)
+        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense = sgx_pic_data.szVehicleLicenseFromName
+        AND sgx_pic_data.isSended = 0 AND iTotalWeight > #{limitWeight}
+        LIM;
+   </select>
+
 </mapper>

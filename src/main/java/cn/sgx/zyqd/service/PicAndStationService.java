@@ -1,9 +1,7 @@
 package cn.sgx.zyqd.service;
 
 import cn.sgx.zyqd.mybatis.dao.PicAndStationDAO;
-import cn.sgx.zyqd.mybatis.dao.StationDataDAO;
 import cn.sgx.zyqd.mybatis.vo.PicAndStationVo;
-import cn.sgx.zyqd.mybatis.vo.StationDataVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,12 @@ public class PicAndStationService {
     public List<PicAndStationVo> queryByITotalWeight(Integer limitWeight) {
         return dao.queryByITotalWeight(limitWeight);
     }
+
+
+    public List<PicAndStationVo> queryByITotalWeightLimit(Integer limitWeight,Integer limit) {
+        return dao.queryByITotalWeightLimit(limitWeight, limit);
+    }
+
 
 
 }

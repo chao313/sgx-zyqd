@@ -41,9 +41,13 @@ public class SocketPushService {
 
     public List<Integer> push(List<PicAndStationVo> vos) throws Exception {
 
+        boolean dataStatus = false;
+        boolean picStatus = false;
 
         InputStream is = null;
         BufferedReader br = null;
+        List<Integer> ids = new ArrayList<>();
+
         for (int i = 0; i < vos.size(); i++) {
             //创建客户端Socket，指定服务器地址和端口
             if (null == socket || socket.isClosed()) {
@@ -56,10 +60,10 @@ public class SocketPushService {
             DataVo dataVo = new DataVo();
             BeanUtils.copyProperties(vos.get(i), dataVo);
             dataVo.init(stationID, vos.get(i).getILane(), vos.get(i).getITotalWeight());
-            map.put("data", dataVo);
+            map.put("dataStatus", dataVo);
 
             /**
-             * 总重 不知道为什么不可以   WeightNum="${data.weightNum}" 除了0都不行
+             * 总重 不知道为什么不可以   WeightNum="${dataStatus.weightNum}" 除了0都不行
              */
             StringBuffer buffer = FreemarkUtil.generateXmlByTemplate(map, dataXml);
             logger.info("the date to write ：{}", buffer);
@@ -74,6 +78,12 @@ public class SocketPushService {
                 // if(){}
             }
             logger.info("push station end ：{}", vos.get(i).getSzVehicleLicense());
+
+            if(info.contains("Ret=\"1\"")){
+               //表明data成功
+                dataStatus = true;
+            }
+
             if (socket.isClosed() == false) {
                 //关闭资源
                 br.close();
@@ -93,7 +103,7 @@ public class SocketPushService {
             PicVo picVo = new PicVo();
             picVo.setByteLength(String.valueOf(vos.get(i).getPicBin().length()));
             picVo.setPicBin(vos.get(i).getPicBin());
-            map.put("data", dataVo);
+            map.put("dataStatus", dataVo);
             map.put("pic", picVo);
             buffer = FreemarkUtil.generateXmlByTemplate(map, picXml);
             logger.info("the date to write ：{}", buffer);
@@ -108,6 +118,14 @@ public class SocketPushService {
                 // if(){}
             }
             logger.info("push station end ：{}", vos.get(i).getSzVehicleLicense());
+            if(info.contains("Ret=\"1\"")){
+                //表明data成功
+                picStatus = true;
+            }
+            if(dataStatus == true && picStatus ==true){
+                ids.add(vos.get(i).getId());
+            }
+
             if (socket.isClosed() == false) {
                 //关闭资源
                 br.close();
@@ -115,8 +133,7 @@ public class SocketPushService {
                 socket.close();
             }
         }
-
-        return new ArrayList<>();
+        return ids;
 
     }
 

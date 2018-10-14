@@ -1,5 +1,6 @@
 package cn.sgx.zyqd.controller;
 
+import cn.sgx.zyqd.datasource.DataSourceChange;
 import cn.sgx.zyqd.framework.Code;
 import cn.sgx.zyqd.framework.Response;
 import cn.sgx.zyqd.mybatis.vo.PicAndStationVo;
@@ -60,7 +61,7 @@ public class MyBatisController {
 //        return response;
 //    }
 //
-
+    @DataSourceChange(value = "dataSource197")
     @ApiOperation(value = "查询当天的，没有发送成功的数据", notes = "查询当天的，没有发送成功的数据")
     @GetMapping(value = "/picAndStation/queryByITotalWeight/{limitWeight}")
     public Response getPicStationVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight) {
@@ -83,6 +84,7 @@ public class MyBatisController {
         return response;
     }
 
+    @DataSourceChange(value = "dataSource197")
     @ApiOperation(value = "查询当天的，没有发送成功的数据,限制查询的limit", notes = "查询当天的，没有发送成功的数据，限制查询的limit")
     @GetMapping(value = "/picAndStation/queryByITotalWeightLimit/{limitWeight}/{limit}")
     public Response getPicStationVoByLimitWeightLimit(@PathVariable(value = "limitWeight") Integer limitWeight,
@@ -106,6 +108,7 @@ public class MyBatisController {
         return response;
     }
 
+    @DataSourceChange(value = "dataSource195")
     @ApiOperation(value = "根据id来更新picAndStation的发送状态", notes = "根据id来更新picAndStation的发送状态")
     @GetMapping(value = "/picAndStation/updateStatusByID/{id}")
     public Response updatePicDataById(@PathVariable(value = "id") Integer id) {

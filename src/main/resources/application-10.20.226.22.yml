@@ -63,6 +63,6 @@ socket:
 
 ##web 机器所用 其他的不需要
 http:
-  limitWeigeht: 4900
+  limitWeight: 4900
   limit: 5
   host: http://localhost:65500/chao

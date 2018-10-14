@@ -1,30 +1,32 @@
 package cn.sgx.zyqd;
 
+import com.jolbox.bonecp.BoneCPDataSource;
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.jolbox.bonecp.BoneCPDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig {
+public class DataSourceConfig197 {
 
-    @Value(value = "${jdbc.driver-class-name}")
+    @Value(value = "${jdbc197.driver-class-name}")
     private String jdbcDriverClassName;
 
-    @Value(value = "${jdbc.url}")
+    @Value(value = "${jdbc197.url}")
     private String jdbcUrl;
 
-    @Value(value = "${jdbc.userName}")
+    @Value(value = "${jdbc197.userName}")
     private String userName;
 
-    @Value(value = "${jdbc.password}")
+    @Value(value = "${jdbc197.password}")
     private String password;
 
 
-    @Bean
-    public BoneCPDataSource generateDataSource(){
+    @Bean(autowire = Autowire.BY_NAME,value = "dataSource197")
+    public DataSource generateDataSource(){
 
         BoneCPDataSource boneCPDataSource = new BoneCPDataSource();
         // 数据库驱动

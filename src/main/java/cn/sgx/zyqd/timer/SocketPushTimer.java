@@ -31,7 +31,7 @@ public class SocketPushTimer {
     @Value(value = "${http.host}")
     private String host;
     @Value(value = "${http.limitWeight}")
-    private Integer limitWeigeht;
+    private Integer limitWeight;
 
     @Value(value = "${http.limit}")
     private Integer limit;
@@ -42,7 +42,7 @@ public class SocketPushTimer {
     public void task() {
         try {
             List<PicAndStationVo> picAndStationVos =
-                    httpService.getPicAndStationVoLimit(host, limitWeigeht, limit);
+                    httpService.getPicAndStationVoLimit(host, limitWeight, limit);
             List<Integer> pushResults = socketPushService.push(picAndStationVos);
 
             pushResults.stream().forEach(id -> {

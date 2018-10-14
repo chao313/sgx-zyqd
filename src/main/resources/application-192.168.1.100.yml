@@ -10,11 +10,32 @@ jdbc:
   password: coing
 
 
+#数据源
+jdbc195:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://10.20.224.195:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
 
-http:
-  limitWeight: 4900
-  limit: 5
-  host: http://localhost:65500/chao
+#数据源
+jdbc196:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+jdbc197:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://10.20.224.197:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+jdbc198:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://10.20.224.198:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
 
 
 ##前置机无用和web无用
@@ -24,10 +45,7 @@ pic:
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?
-  ##每分钟执行一次
-#  push: 0 0/1 * * * *
-  push: 0/10 * * * * *
-
+  push: 0 0/1 * * * *
 
 
 ##车道程序无用 -前置机无用 - 为了程序正常加载
@@ -38,6 +56,12 @@ socket:
     server: 7712
     local: 65501
   xml:
-     data: data.xml
-     pic: pic.xml
+    data: data.xml
+    pic: pic.xml
 
+##web 机器所用 其他的不需要
+http:
+  limitWeight: 4900
+  limit: 5
+  host: http://localhost:65500/chao
+#  host: http://192.168.1.3:65500/chao

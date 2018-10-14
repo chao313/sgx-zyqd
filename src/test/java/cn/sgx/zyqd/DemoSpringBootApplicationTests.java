@@ -39,7 +39,7 @@ public class DemoSpringBootApplicationTests {
     public void testHttpService() {
         try {
             List<PicAndStationVo> picAndStationVos =
-                    httpService.getPicAndStationVoLimit(host, limitWeigeht, limit);
+                    httpService.getPicAndStationVoLimit(host, limitWeigeht, limit,"dataSource196");
             logger.error("[ SUCCESS testHttpService getPicAndStationVoLimit ] vos: {} ",picAndStationVos);
         } catch (IOException e) {
             logger.error("[ ERROR testHttpService getPicAndStationVoLimit ] msg: {} ",e.getMessage(),e);

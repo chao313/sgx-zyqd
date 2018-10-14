@@ -23,25 +23,25 @@ public class HttpService {
 
     private String updatePicDataByIdURL = "/picAndStation/updateStatusByID";
 
-    public List<PicAndStationVo> getPicAndStationVoLimit(String host, Integer limitWeight, Integer limit) throws IOException {
-        String jsonStr = HttpClientUtils.doGet(host + getPicAndStationVoLimitURL + "/" + limitWeight + "/" + limit, null);
+    public List<PicAndStationVo> getPicAndStationVoLimit(String host, Integer limitWeight, Integer limit, String dataSource) throws IOException {
+        String jsonStr = HttpClientUtils.doGet(host + getPicAndStationVoLimitURL + "/" + limitWeight + "/" + limit + "/" + dataSource, null);
         List<PicAndStationVo> picAndStationVos = new ArrayList<>();
         Response<List<PicAndStationVo>> response =
                 JSON.parseObject(jsonStr, new TypeReference<Response<List<PicAndStationVo>>>() {
                 });
 
-        if (response.getCode() .equals(Code.System.OK) ) {
+        if (response.getCode().equals(Code.System.OK)) {
             logger.info("HttpService:getPicAndStationVoLimit -> SUCCCESS; vos:{}", response.getContent());
             picAndStationVos = response.getContent();
-        } else if (response.getCode().equals( Code.System.FAIL)) {
+        } else if (response.getCode().equals(Code.System.FAIL)) {
             logger.error("HttpService:getPicAndStationVoLimit -> FAIL; message:{}", response.getMsg());
         }
 
         return picAndStationVos;
     }
 
-    public Boolean updatePicDataById(String host, Integer id) throws IOException {
-        String jsonStr = HttpClientUtils.doGet(host + updatePicDataByIdURL + "/" + id, null);
+    public Boolean updatePicDataById(String host, Integer id, String dataSource) throws IOException {
+        String jsonStr = HttpClientUtils.doGet(host + updatePicDataByIdURL + "/" + id + "/" + dataSource, null);
         Boolean bool = false;
         Response<Boolean> response =
                 JSON.parseObject(jsonStr, new TypeReference<Response<Boolean>>() {

@@ -39,7 +39,7 @@ public class MyBatisController {
     private SocketPushService socketPushService;
 
 
-//    @GetMapping(value = "/stationData/queryByITotalWeight/{limitWeight}")
+    //    @GetMapping(value = "/stationData/queryByITotalWeight/{limitWeight}")
 //    public Response getStationDataVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight) {
 //        logger.info("[ getStationDataVoByLimitWeight ] stationDataService/queryByITotalWeight ");
 //        Response<List<StationDataVo>> response = new Response<>();
@@ -61,10 +61,11 @@ public class MyBatisController {
 //        return response;
 //    }
 //
-    @DataSourceChange(value = "dataSource197")
+    @DataSourceChange()
     @ApiOperation(value = "查询当天的，没有发送成功的数据", notes = "查询当天的，没有发送成功的数据")
-    @GetMapping(value = "/picAndStation/queryByITotalWeight/{limitWeight}")
-    public Response getPicStationVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight) {
+    @GetMapping(value = "/picAndStation/queryByITotalWeight/{limitWeight}/{dataSource}")
+    public Response getPicStationVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight,
+                                                 @PathVariable(value = "dataSource") String dataSource) {
         logger.info("[ getPicStationVoByLimitWeight ] stationDataService/queryByITotalWeight ");
         Response<List<PicAndStationVo>> response = new Response<>();
         try {
@@ -84,18 +85,19 @@ public class MyBatisController {
         return response;
     }
 
-    @DataSourceChange(value = "dataSource197")
+    @DataSourceChange()
     @ApiOperation(value = "查询当天的，没有发送成功的数据,限制查询的limit", notes = "查询当天的，没有发送成功的数据，限制查询的limit")
-    @GetMapping(value = "/picAndStation/queryByITotalWeightLimit/{limitWeight}/{limit}")
+    @GetMapping(value = "/picAndStation/queryByITotalWeightLimit/{limitWeight}/{limit}/{dataSource}")
     public Response getPicStationVoByLimitWeightLimit(@PathVariable(value = "limitWeight") Integer limitWeight,
-                                                      @PathVariable(value = "limit") Integer limit) {
+                                                      @PathVariable(value = "limit") Integer limit,
+                                                      @PathVariable(value = "dataSource") String dataSource) {
         logger.info("[ getPicStationVoByLimitWeight ] stationDataService/queryByITotalWeight ");
         Response<List<PicAndStationVo>> response = new Response<>();
         try {
             response.setCode(Code.System.OK);
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
             List<PicAndStationVo> vos =
-                    picAndStationService.queryByITotalWeightLimit(limitWeight,limit);
+                    picAndStationService.queryByITotalWeightLimit(limitWeight, limit);
             logger.info("[ queryByITotalWeightLimit : PicAndStationVo  ]成功 vos:{}", vos);
             response.setContent(vos);
 
@@ -108,16 +110,17 @@ public class MyBatisController {
         return response;
     }
 
-    @DataSourceChange(value = "dataSource195")
+    @DataSourceChange()
     @ApiOperation(value = "根据id来更新picAndStation的发送状态", notes = "根据id来更新picAndStation的发送状态")
-    @GetMapping(value = "/picAndStation/updateStatusByID/{id}")
-    public Response updatePicDataById(@PathVariable(value = "id") Integer id) {
+    @GetMapping(value = "/picAndStation/updateStatusByID/{id}/{dataSource}")
+    public Response updatePicDataById(@PathVariable(value = "id") Integer id,
+                                      @PathVariable(value = "dataSource")String dataSource) {
         logger.info("[ updatePicDataById ] picDataService/updateStatusByID(id) ");
         Response<Boolean> response = new Response<>();
         try {
             response.setCode(Code.System.OK);
             response.setMsg(Code.System.SERVER_SUCCESS_MSG);
-           boolean bool =
+            boolean bool =
                     picDataService.updateStatusByID(id);
             logger.info("[ updatePicDataById :   ]SUCCESS vos:{}", bool);
             response.setContent(bool);

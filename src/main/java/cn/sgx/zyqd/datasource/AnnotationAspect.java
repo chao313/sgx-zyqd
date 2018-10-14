@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * 2018/8/9    Created by   chao
@@ -32,12 +33,13 @@ public class AnnotationAspect {
 
     @Before("pointcut()")
     public void beforeAdvice(JoinPoint joinPoint) {
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Method method = methodSignature.getMethod();
-        //获取该方法上的注解名
-        DataSourceChange datasource = method.getAnnotation(DataSourceChange.class);
+        Object[] args = joinPoint.getArgs();
+        logger.info("before exec args:{}", Arrays.toString(args));
+        String dataSource  = args[args.length-1].toString();//指定最后一个参数是DataSource
+        //dataSource 只能是dataSource195/196/197/198
         //将方法体上的注解的值赋予给DataSourceHolder数据源持有类
-        DataSourceHolder.setDataSourceType(datasource.value());
+        DataSourceHolder.setDataSourceType(dataSource);
+
     }
 
 }

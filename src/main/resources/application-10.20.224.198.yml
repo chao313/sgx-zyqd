@@ -15,7 +15,8 @@ pic:
 timer:
   scandir: 0 0/1 * * * *
 ##每分钟执行一次，如果当天有文件增加，就保存
-
+  ##每月15号执行
+  push: 0 0 0 15 * ?
 
 ##车道程序无用 - 为了程序正常加载
 socket:
@@ -25,6 +26,11 @@ socket:
     server: 7712
     local: 65500
   xml:
-     data: data.ftl
+     data: data.xml
      pic: pic.xml
 
+##web 机器所用 其他的不需要
+http:
+  limitWeigeht: 4900
+  limit: 5
+  host: http://localhost:65500/chao

@@ -30,7 +30,7 @@ public class SocketPushTimer {
     private HttpService httpService;
     @Value(value = "${http.host}")
     private String host;
-    @Value(value = "${http.limitWeigeht}")
+    @Value(value = "${http.limitWeight}")
     private Integer limitWeigeht;
 
     @Value(value = "${http.limit}")
@@ -54,10 +54,10 @@ public class SocketPushTimer {
             });
 
             logger.info("[Timer Task ] SocketPush : ip:port is {}, push vos is {} , success vo id is {}",
-                    socketPushService.ip + socketPushService.port, picAndStationVos, pushResults);
+                    socketPushService.ip +" : "+ socketPushService.port, picAndStationVos, pushResults);
         } catch (Exception e) {
             logger.info("[Timer Task ] SocketPush : ip:port is {}",
-                    socketPushService.ip + socketPushService.port);
+                    socketPushService.ip + socketPushService.port,e);
         }
     }
 }

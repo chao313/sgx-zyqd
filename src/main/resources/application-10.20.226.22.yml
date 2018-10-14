@@ -20,6 +20,8 @@ pic:
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?
+  ##每月15号执行
+  push: 0 0 0 15 * ?
 
 
 
@@ -29,8 +31,13 @@ socket:
   ip: 106.14.225.153
   port:
     server: 7712
-    local: 65500
+    local: 65501
   xml:
-     data: data.ftl
+     data: data.xml
      pic: pic.xml
 
+##web 机器所用 其他的不需要
+http:
+  limitWeigeht: 4900
+  limit: 5
+  host: http://localhost:65500/chao

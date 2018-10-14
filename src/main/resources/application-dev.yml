@@ -26,7 +26,7 @@ socket:
     server: 7712
     local: 65500
   xml:
-    data: data.ftl
+    data: data.xml
     pic: pic.xml
 
 

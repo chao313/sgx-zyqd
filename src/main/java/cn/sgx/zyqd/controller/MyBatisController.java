@@ -38,28 +38,28 @@ public class MyBatisController {
     private SocketPushService socketPushService;
 
 
-    @GetMapping(value = "/stationData/queryByITotalWeight/{limitWeight}")
-    public Response getStationDataVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight) {
-        logger.info("[ getStationDataVoByLimitWeight ] stationDataService/queryByITotalWeight ");
-        Response<List<StationDataVo>> response = new Response<>();
-        try {
-            response.setCode(Code.System.OK);
-            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
-            List<StationDataVo> vos =
-                    stationDataService.queryByITotalWeight(limitWeight);
-            logger.info("[ getStationDataVoByLimitWeight : stationDataVos  ]成功 vos:{}", vos);
-            socketPushService.push(vos);
-            response.setContent(vos);
-
-        } catch (Exception e) {
-            response.setCode(Code.System.FAIL);
-            response.setMsg(e.toString());
-            response.addException(e);
-            logger.error("[getStationDataVoByLimitWeight ]FAIL path:{}", e.getMessage(), e);
-        }
-        return response;
-    }
-
+//    @GetMapping(value = "/stationData/queryByITotalWeight/{limitWeight}")
+//    public Response getStationDataVoByLimitWeight(@PathVariable(value = "limitWeight") Integer limitWeight) {
+//        logger.info("[ getStationDataVoByLimitWeight ] stationDataService/queryByITotalWeight ");
+//        Response<List<StationDataVo>> response = new Response<>();
+//        try {
+//            response.setCode(Code.System.OK);
+//            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+//            List<StationDataVo> vos =
+//                    stationDataService.queryByITotalWeight(limitWeight);
+//            logger.info("[ getStationDataVoByLimitWeight : stationDataVos  ]成功 vos:{}", vos);
+//            socketPushService.push(vos);
+//            response.setContent(vos);
+//
+//        } catch (Exception e) {
+//            response.setCode(Code.System.FAIL);
+//            response.setMsg(e.toString());
+//            response.addException(e);
+//            logger.error("[getStationDataVoByLimitWeight ]FAIL path:{}", e.getMessage(), e);
+//        }
+//        return response;
+//    }
+//
 
     @ApiOperation(value = "查询当天的，没有发送成功的数据", notes = "查询当天的，没有发送成功的数据")
     @GetMapping(value = "/picAndStation/queryByITotalWeight/{limitWeight}")
@@ -128,28 +128,28 @@ public class MyBatisController {
         return response;
     }
 
-    @GetMapping(value = "/SocketPushService/push/{limitWeight}")
-    public Response SocketPushService_push
-            (@PathVariable(value = "limitWeight") Integer limitWeight) {
-        logger.info("[ socket push ]scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
-        Response<Boolean> response = new Response<Boolean>();
-        try {
-            response.setCode(Code.System.OK);
-            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
-            List<StationDataVo> vos =
-                    stationDataService.queryByITotalWeight(limitWeight);
-            logger.info("[ socket push : stationDataVos  ]SUCCESS vos:{}", vos);
-            socketPushService.push(vos);
-            response.setContent(true);
-
-        } catch (Exception e) {
-            response.setCode(Code.System.FAIL);
-            response.setMsg(e.toString());
-            response.addException(e);
-            logger.error("[ socket push ]FAIL path:{}", scanPicService.getPicPath(), e);
-        }
-        return response;
-    }
+//    @GetMapping(value = "/SocketPushService/push/{limitWeight}")
+//    public Response SocketPushService_push
+//            (@PathVariable(value = "limitWeight") Integer limitWeight) {
+//        logger.info("[ socket push ]scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
+//        Response<Boolean> response = new Response<Boolean>();
+//        try {
+//            response.setCode(Code.System.OK);
+//            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+//            List<StationDataVo> vos =
+//                    stationDataService.queryByITotalWeight(limitWeight);
+//            logger.info("[ socket push : stationDataVos  ]SUCCESS vos:{}", vos);
+//            socketPushService.push(vos);
+//            response.setContent(true);
+//
+//        } catch (Exception e) {
+//            response.setCode(Code.System.FAIL);
+//            response.setMsg(e.toString());
+//            response.addException(e);
+//            logger.error("[ socket push ]FAIL path:{}", scanPicService.getPicPath(), e);
+//        }
+//        return response;
+//    }
 
 
     @ApiOperation(value = "只扫描当天图片.jpg结尾", notes = "只扫描当天图片.jpg结尾")

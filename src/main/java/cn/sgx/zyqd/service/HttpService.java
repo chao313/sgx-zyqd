@@ -30,10 +30,10 @@ public class HttpService {
                 JSON.parseObject(jsonStr, new TypeReference<Response<List<PicAndStationVo>>>() {
                 });
 
-        if (response.getCode() == Code.System.OK) {
+        if (response.getCode() .equals(Code.System.OK) ) {
             logger.info("HttpService:getPicAndStationVoLimit -> SUCCCESS; vos:{}", response.getContent());
             picAndStationVos = response.getContent();
-        } else if (response.getCode() == Code.System.FAIL) {
+        } else if (response.getCode().equals( Code.System.FAIL)) {
             logger.error("HttpService:getPicAndStationVoLimit -> FAIL; message:{}", response.getMsg());
         }
 

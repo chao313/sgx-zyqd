@@ -12,7 +12,7 @@ jdbc:
 
 
 http:
-  limitWeigeht: 4900
+  limitWeight: 4900
   limit: 5
   host: http://localhost:65500/chao
 
@@ -25,7 +25,8 @@ pic:
 timer:
   scandir: 0 0 0 15 * ?
   ##每分钟执行一次
-  push: 0 0/1 * * * *
+#  push: 0 0/1 * * * *
+  push: 0/10 * * * * *
 
 
 
@@ -35,8 +36,8 @@ socket:
   ip: 106.14.225.153
   port:
     server: 7712
-    local: 65500
+    local: 65501
   xml:
-     data: data.ftl
+     data: data.xml
      pic: pic.xml
 

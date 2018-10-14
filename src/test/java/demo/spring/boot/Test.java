@@ -17,7 +17,7 @@ public class Test {
 ////        logger.info("status:",socket.);
 ////2、获取输出流，向服务器端发送信息
 //        OutputStream os = socket.getOutputStream();//字节输出流
-//        File file = ResourceUtils.getFile("classpath:data.ftl");
+//        File file = ResourceUtils.getFile("classpath:data.xml");
 //        FileInputStream fileInputStream = new FileInputStream(file);
 //        byte[] bytes = new byte[1185];
 //        while (fileInputStream.read(bytes)!=-1) {
@@ -40,13 +40,14 @@ public class Test {
 //    }
 //
     public static void main(String[] args) throws IOException {
-
+        Socket socket=null;
+        try {
         //创建客户端Socket，指定服务器地址和端口
-        Socket socket = new Socket("106.14.225.153", 7712,null,65500);
+         socket = new Socket("106.14.225.153", 7712,null,65508);
         logger.info("local port : {}",socket.getLocalPort());
         //获取输出流，向服务器端发送信息
         OutputStream os = socket.getOutputStream();//字节输出流
-        File file = ResourceUtils.getFile("classpath:demo.ftl");
+        File file = ResourceUtils.getFile("classpath:picdemo.xml");
         FileInputStream fileInputStream = new FileInputStream(file);
         byte[] bytes = new byte[1185];
         while (fileInputStream.read(bytes)!=-1) {
@@ -66,6 +67,12 @@ public class Test {
         is.close();
         os.close();
         socket.close();
+        }catch (Exception e){
+               e.printStackTrace();
+        }finally {
+
+            socket.close();
+        }
     }
 
 

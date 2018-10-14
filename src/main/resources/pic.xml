@@ -1,0 +1,13 @@
+SHCS${data.no}00000911
+<Root Type="111"
+      ResType="11"
+      ResSize="${pic.byteLength}"
+      format="">
+    <Data SystemNO="${data.systemNO}"
+          CheckType="1"
+          WorkDate="${data.workDate}"
+          PassTime="${data.passTime}"
+          StationID="${data.stationID}"
+          RoadID="${data.roadID}"/>
+</Root>
+${pic.picBin}

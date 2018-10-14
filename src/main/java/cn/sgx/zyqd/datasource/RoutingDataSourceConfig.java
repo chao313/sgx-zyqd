@@ -1,13 +1,6 @@
 package cn.sgx.zyqd.datasource;
 
-import cn.sgx.zyqd.DataSourceConfig195;
-import cn.sgx.zyqd.DataSourceConfig196;
-import cn.sgx.zyqd.DataSourceConfig197;
-import cn.sgx.zyqd.DataSourceConfig198;
-import com.jolbox.bonecp.BoneCPDataSource;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowire;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
@@ -18,8 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-//@AutoConfigureAfter(value = {DataSourceConfig195.class, DataSourceConfig196.class, DataSourceConfig197.class, DataSourceConfig198.class})
-//表示在DataSource之后才自动装配
 public class RoutingDataSourceConfig {
     @Resource(name = "dataSource195")
     DataSource dataSource195;

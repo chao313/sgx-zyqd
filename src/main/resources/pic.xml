@@ -9,5 +9,5 @@ SHCS${data.no}00000911
           PassTime="${data.passTime}"
           StationID="${data.stationID}"
           RoadID="${data.roadID}"/>
+    ${pic.picBin}
 </Root>
-${pic.picBin}

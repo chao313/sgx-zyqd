@@ -38,7 +38,7 @@ public class DataVo {
             throw new Exception(message);
         }
 
-        this.roadID = String.valueOf(iLane).substring(1); //去掉102 中的1
+        this.roadID = String.valueOf(iLane).substring(2); //去掉102 中的1
         this.weightNum = String.valueOf(iTotalWeight);
         this.stationID = stationID;
         this.workDate = DateUtils.getFormatDateTime(this.dtPassTime, DateUtils.DATE_FORMAT);

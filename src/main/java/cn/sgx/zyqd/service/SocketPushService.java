@@ -60,7 +60,7 @@ public class SocketPushService {
             DataVo dataVo = new DataVo();
             BeanUtils.copyProperties(vos.get(i), dataVo);
             dataVo.init(stationID, vos.get(i).getILane(), vos.get(i).getITotalWeight());
-            map.put("dataStatus", dataVo);
+            map.put("data", dataVo);
 
             /**
              * 总重 不知道为什么不可以   WeightNum="${dataStatus.weightNum}" 除了0都不行
@@ -68,11 +68,11 @@ public class SocketPushService {
             StringBuffer buffer = FreemarkUtil.generateXmlByTemplate(map, dataXml);
             logger.info("the date to write ：{}", buffer);
             socket.getOutputStream().write(buffer.toString().getBytes());
-
+            socket.shutdownOutput();
             //获取输入流
             is = socket.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
-            String info = null;
+            String info =  null;
             while ((info = br.readLine()) != null) {
                 logger.info("l am client , server info is {}" + info);
                 // if(){}
@@ -103,12 +103,12 @@ public class SocketPushService {
             PicVo picVo = new PicVo();
             picVo.setByteLength(String.valueOf(vos.get(i).getPicBin().length()));
             picVo.setPicBin(vos.get(i).getPicBin());
-            map.put("dataStatus", dataVo);
+            map.put("data", dataVo);
             map.put("pic", picVo);
             buffer = FreemarkUtil.generateXmlByTemplate(map, picXml);
             logger.info("the date to write ：{}", buffer);
             socket.getOutputStream().write(buffer.toString().getBytes());
-
+            socket.shutdownOutput();
             //获取输入流
             is = socket.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));

@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 import java.io.IOException;
 
 @Configuration
-//@AutoConfigureAfter(RoutingDataSourceConfig.class)//表示在DataSource之后才自动装配
 public class MyBatisConfig {
 
     @Bean

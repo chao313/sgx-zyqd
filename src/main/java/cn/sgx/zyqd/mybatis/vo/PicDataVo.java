@@ -23,7 +23,7 @@ public class PicDataVo {
                 String[] split = picName.split("-");
                 if (split.length >= 2) {
                     this.yyyyMMddTimeFromName = split[0];//时间
-                    this.szVehicleLicenseFromName = split[1];//车牌
+                    this.szVehicleLicenseFromName = split[1].substring(1);//车牌 去掉车牌颜色
                 }
 
             }

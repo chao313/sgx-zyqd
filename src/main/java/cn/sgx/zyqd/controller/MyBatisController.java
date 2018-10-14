@@ -83,7 +83,7 @@ public class MyBatisController {
         return response;
     }
 
-    @ApiOperation(value = "根据id来更新picAndStation的发送状态", notes = "\"根据id来更新picAndStation的发送状态")
+    @ApiOperation(value = "根据id来更新picAndStation的发送状态", notes = "根据id来更新picAndStation的发送状态")
     @GetMapping(value = "/picAndStation/updateStatusByID/{id}")
     public Response updatePicDataById(@PathVariable(value = "id") Integer id) {
         logger.info("[ updatePicDataById ] picDataService/updateStatusByID(id) ");

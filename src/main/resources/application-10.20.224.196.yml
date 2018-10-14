@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  context-path: /chao
+
+#数据源
+jdbc:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+pic:
+  path: D:\result\192.168.0.196\Record\
+  type: .jpg
+timer:
+  scandir: 0 0/1 * * * *
+##每分钟执行一次，如果当天有文件增加，就保存
+
+
+##车道程序无用 - 为了程序正常加载
+socket:
+  stationID: 3211110060
+  ip: 106.14.225.153
+  port:
+    server: 7712
+    local: 65500
+  xml:
+     data: data.ftl
+     pic: pic.xml
+

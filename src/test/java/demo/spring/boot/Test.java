@@ -43,7 +43,7 @@ public class Test {
         Socket socket=null;
         try {
         //创建客户端Socket，指定服务器地址和端口
-         socket = new Socket("106.14.225.153", 7712,null,65508);
+         socket = new Socket("106.14.225.153", 7712);
         logger.info("local port : {}",socket.getLocalPort());
         //获取输出流，向服务器端发送信息
         OutputStream os = socket.getOutputStream();//字节输出流

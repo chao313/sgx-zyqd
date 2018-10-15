@@ -1,4 +1,4 @@
-SHCS0000001100000910
+SHCS0000001100000990
 <Root Type="101">
     <Data SystemNO="32111100600220140103191553000000"
           CheckType="1"
@@ -9,7 +9,7 @@ SHCS0000001100000910
           IsReverse="0"
           CarType="1"
           WeightStd="0"
-          WeightNum=""
+          WeightNum="19000"
           WeightStdOS="0"
           AxisNum="0"
           AxisStruct=""

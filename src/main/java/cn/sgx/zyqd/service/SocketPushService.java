@@ -63,7 +63,7 @@ public class SocketPushService {
             map.put("data", dataVo);
 
             /**
-             * 总重 不知道为什么不可以   WeightNum="${dataStatus.weightNum}" 除了0都不行
+             *
              */
             StringBuffer buffer = FreemarkUtil.generateXmlByTemplate(map, dataXml);
             logger.info("the date to write ：{}", buffer);

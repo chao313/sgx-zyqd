@@ -1,2 +1,13 @@
-SHCS0000001200000259
-<Root Type="111" ResType="11" ResSize="10" format=""><Data SystemNO="32111100600120181011000110750000" CheckType="1" WorkDate="2018-10-11" PassTime="2018-10-11 00:01:10.750" StationID="3211110060" RoadID="1"></Data></Root>
+SHCS0000001200000215
+<Root Type="111"
+      ResType="11"
+      ResSize="1"
+      format="">
+    <Data SystemNO="32111100600120181011000110750000"
+          CheckType="1"
+          WorkDate="2018-10-11"
+          PassTime="2018-10-11 00:01:10.750"
+          StationID="3211110060"
+          RoadID="1"/>
+</Root>
+1

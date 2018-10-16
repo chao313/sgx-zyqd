@@ -94,21 +94,22 @@ public class SocketPushService {
             dataVo.init(stationID, vo.getILane(), vo.getITotalWeight());
             map.put("data", dataVo);
             buffer = FreemarkUtil.generateXmlByTemplate(map, dataXml);
-            String head = "SHCS" + dataVo.getNo() + new DecimalFormat("00000000").format(buffer.length() + 2);
-            String bufferStr = head + buffer.toString();
+            String cleanXml  = "<"+buffer.substring(buffer.indexOf("<")+1);
+            int num = cleanXml.getBytes("UTF-8").length;
+            String head = "SHCS" + dataVo.getNo() + new DecimalFormat("00000000").format(num);
+
+            String bufferStr = head.trim() +cleanXml.trim();
             logger.info("the date to write ：{}", bufferStr);
-            socket.getOutputStream().write(bufferStr.getBytes());
+            socket.getOutputStream().write(bufferStr.getBytes("UTF-8"));
             socket.getOutputStream().flush();
             //获取输入流
             socket.shutdownOutput();
             is = socket.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
-            while ((info = br.readLine()) != null) {
-                System.out.println("我是客户端，服务器说：" + info);
-            }
+            info = br.readLine();
             logger.info("l am client , server info is {}", info);
             logger.info("push station end ：{}", vo.getSzVehicleLicense());
-            return null == info || info.contains("Ret=\"1\"");
+            return info.contains("Ret=\"1\"");
         } finally {
             if (null != socket && socket.isClosed() == false) {
                 //关闭资源
@@ -142,7 +143,7 @@ public class SocketPushService {
         map.put("pic", picVo);
         buffer = FreemarkUtil.generateXmlByTemplate(map, picXml);
         logger.info("the date to write ：{}", buffer);
-        socket.getOutputStream().write(buffer.toString().getBytes());
+        socket.getOutputStream().write(buffer.toString().getBytes("UTF-8"));
         socket.shutdownOutput();
         //获取输入流
         is = socket.getInputStream();

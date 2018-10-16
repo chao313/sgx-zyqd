@@ -62,7 +62,7 @@ socket:
 
 ##web 机器所用 其他的不需要
 http:
-  limitWeight: 49000
+  limitWeight: 490
   limit: 5
 #  host: http://localhost:65500/chao
   host: http://192.168.1.4:65500/chao

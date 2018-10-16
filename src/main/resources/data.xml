@@ -1,4 +1,4 @@
-SHCS${data.no}00000990
+<Root Type="101">
     <Data SystemNO="${data.systemNO}"
           CheckType="1"
           WorkDate="${data.workDate}"

@@ -17,11 +17,7 @@ public class PicVo {
         Arrays.asList( picBin.toCharArray()).stream().forEach(chars -> {
             //...把16进行2进制 待处理
         });
-
-
-
-
-
+        return this;
     }
 
 }

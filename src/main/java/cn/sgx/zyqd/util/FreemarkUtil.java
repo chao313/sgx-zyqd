@@ -5,6 +5,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.util.ResourceUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
@@ -17,8 +18,8 @@ public class FreemarkUtil {
             throws IOException, TemplateException {
         configuration.setDefaultEncoding("UTF-8");
         configuration.setClassicCompatible(true);
-        configuration.setDirectoryForTemplateLoading(
-                ResourceUtils.getFile("classpath:"));
+        File file = new File("D:/sgx/xml/");
+        configuration.setDirectoryForTemplateLoading(file);
         Template template =
                 configuration.getTemplate(templatePath); //文件名
         java.io.StringWriter

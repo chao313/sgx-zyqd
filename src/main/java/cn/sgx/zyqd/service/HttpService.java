@@ -46,10 +46,10 @@ public class HttpService {
         Response<Boolean> response =
                 JSON.parseObject(jsonStr, new TypeReference<Response<Boolean>>() {
                 });
-        if (response.getCode() == Code.System.OK) {
+        if (Code.System.OK.equals(response.getCode()) ) {
             logger.info("HttpService:updatePicDataById -> SUCCCESS; bool:{}", response.getContent());
             bool = response.getContent();
-        } else if (response.getCode() == Code.System.FAIL) {
+        } else if ( Code.System.FAIL.equals(response.getCode())) {
             logger.error("HttpService:updatePicDataById -> FAIL; message:{}", response.getMsg());
 
         }

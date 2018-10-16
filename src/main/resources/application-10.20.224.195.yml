@@ -35,3 +35,6 @@ http:
   limitWeigeht: 4900
   limit: 5
   host: http://localhost:65500/chao
+
+control:
+  picpush: false

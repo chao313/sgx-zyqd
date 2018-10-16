@@ -47,7 +47,7 @@ public class Test {
         logger.info("local port : {}",socket.getLocalPort());
         //获取输出流，向服务器端发送信息
         OutputStream os = socket.getOutputStream();//字节输出流
-        File file = ResourceUtils.getFile("classpath:picdemo.xml");
+        File file = ResourceUtils.getFile("classpath:demo.xml");
         FileInputStream fileInputStream = new FileInputStream(file);
         byte[] bytes = new byte[1185];
         while (fileInputStream.read(bytes)!=-1) {

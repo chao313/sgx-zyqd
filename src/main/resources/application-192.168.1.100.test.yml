@@ -45,8 +45,8 @@ pic:
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?
-  push: 0 0/1 * * * *
-#  push: 0/10 * * * * *
+#  push: 0 0/1 * * * *
+  push: 0/10 * * * * *
 
 
 ##车道程序无用 -前置机无用 - 为了程序正常加载
@@ -62,10 +62,10 @@ socket:
 
 ##web 机器所用 其他的不需要
 http:
-  limitWeight: 49000
+  limitWeight: 4900
   limit: 5
-#  host: http://localhost:65500/chao
-  host: http://192.168.1.4:65500/chao
+  host: http://localhost:65500/chao
+#  host: http://192.168.1.4:65500/chao
 
 control:
   picpush: false

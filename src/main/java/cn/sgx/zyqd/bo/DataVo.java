@@ -27,6 +27,8 @@ public class DataVo {
     private String workDate;//"2018-10-11";
     private String passTime;//"2018-10-11 00:01:10.750"
     private DecimalFormat decimalFormat;
+    private Integer xmlLength = 909;
+    private String xmlLengthStr;
 
 
     private static int i = 11;
@@ -46,6 +48,7 @@ public class DataVo {
         this.systemNO = this.stationID + this.roadID + DateUtils.getFormatDateTime(this.dtPassTime,
                 DateUtils.DATE_TIMESTAMP_LONG_LONG_FORMAT) + "000";
         this.no = this.generateNo();
+        this.xmlLengthStr = new DecimalFormat("00000000").format(this.weightNum.length()+909);
 
         return this;
     }

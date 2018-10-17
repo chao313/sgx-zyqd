@@ -11,6 +11,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     public static final String DATE_SHORT_FORMAT = "yyyyMMdd";
     public static final String DATE_TIME_SHORT_FORMAT = "yyyyMMddHHmm";
+    public static final String SGX_ZYQD_NO_FORMAT = "MMddHHmm";
     public static final String DATE_TIMESTAMP_SHORT_FORMAT = "yyyyMMddHHmmss";
     public static final String DATE_TIMESTAMP_LONG_FORMAT = "yyyyMMddHHmmssS";
     public static final String DATE_TIMESTAMP_LONG_LONG_FORMAT = "yyyyMMddHHmmssSSS";

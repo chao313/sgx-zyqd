@@ -134,16 +134,21 @@ public class SocketPushService {
         BufferedReader br = null;
         String info = null;
         if (null == socket || socket.isClosed()) {
-            socket = new Socket(ip, port, null, localPort);
+            socket = new Socket(ip, port);
         }
-        logger.info("push station start ：{}", vo.getSzVehicleLicense());
+        logger.info("push pic start ：{}", vo.getSzVehicleLicense());
         PicVo picVo = new PicVo();
-        picVo.setByteLength(String.valueOf(vo.getPicBin().length()));
+        picVo.setByteLength(String.valueOf(vo.getPicBin().getBytes("UTF-8").length));
         picVo.setPicBin(vo.getPicBin());
         map.put("pic", picVo);
         buffer = FreemarkUtil.generateXmlByTemplate(map, picXml);
+        String cleanXml  = "<"+buffer.substring(buffer.indexOf("<")+1); //去掉奇怪的字符
+        int num = cleanXml.getBytes("UTF-8").length;//计算出xml体// 的长度
+        String head = "SHCS" + ((DataVo)map.get("data")).getNo() + new DecimalFormat("00000000").format(num);
+        String bufferStr = head.trim() +cleanXml.trim();
         logger.info("the date to write ：{}", buffer);
-        socket.getOutputStream().write(buffer.toString().getBytes("UTF-8"));
+        socket.getOutputStream().write(bufferStr.getBytes("UTF-8"));//写入xml体
+        socket.getOutputStream().write(picVo.getPicBin().getBytes("UTF-8"));//写入图片数据
         socket.shutdownOutput();
         //获取输入流
         is = socket.getInputStream();
@@ -152,7 +157,7 @@ public class SocketPushService {
         while ((info = br.readLine()) != null) {
             logger.info("l am client , server info is {}" + info);
         }
-        logger.info("push station end ：{}", vo.getSzVehicleLicense());
+        logger.info("push pic end ：{}", vo.getSzVehicleLicense());
         if (socket.isClosed() == false) {
             //关闭资源
             br.close();
@@ -161,5 +166,7 @@ public class SocketPushService {
         }
         return info.contains("Ret=\"1\"");
     }
+
+
 
 }

@@ -8,13 +8,11 @@ import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.text.DecimalFormat;
@@ -41,6 +39,10 @@ public class SocketPushService {
     private Integer localPort;
     @Value(value = "${control.picpush}")
     private boolean picpush; //控制图片是否开启传输
+
+
+    @Autowired
+    private FreemarkUtil freemarkUtil;
 
 
     private Socket socket;
@@ -88,17 +90,16 @@ public class SocketPushService {
             BufferedReader br = null;
             String info = null;
             logger.info("push station start ：{}", vo.getSzVehicleLicense());
-            map = new HashMap<String, Object>();
             DataVo dataVo = new DataVo();
             BeanUtils.copyProperties(vo, dataVo);
             dataVo.init(stationID, vo.getILane(), vo.getITotalWeight());
             map.put("data", dataVo);
-            buffer = FreemarkUtil.generateXmlByTemplate(map, dataXml);
-            String cleanXml  = "<"+buffer.substring(buffer.indexOf("<")+1);
+            buffer = freemarkUtil.generateXmlByTemplate(map, dataXml);
+            String cleanXml = "<" + buffer.substring(buffer.indexOf("<") + 1);
             int num = cleanXml.getBytes("UTF-8").length;
             String head = "SHCS" + dataVo.getNo() + new DecimalFormat("00000000").format(num);
 
-            String bufferStr = head.trim() +cleanXml.trim();
+            String bufferStr = head.trim() + cleanXml.trim();
             logger.info("the date to write ：{}", bufferStr);
             socket.getOutputStream().write(bufferStr.getBytes("UTF-8"));
             socket.getOutputStream().flush();
@@ -110,6 +111,8 @@ public class SocketPushService {
             logger.info("l am client , server info is {}", info);
             logger.info("push station end ：{}", vo.getSzVehicleLicense());
             return info.contains("Ret=\"1\"");
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (null != socket && socket.isClosed() == false) {
                 //关闭资源
@@ -117,6 +120,7 @@ public class SocketPushService {
             }
 
         }
+        return false;
     }
 
 
@@ -138,17 +142,17 @@ public class SocketPushService {
         }
         logger.info("push pic start ：{}", vo.getSzVehicleLicense());
         PicVo picVo = new PicVo();
-        picVo.setByteLength(String.valueOf(vo.getPicBin().getBytes("UTF-8").length));
+        picVo.setByteLength(String.valueOf(vo.getPicBin().getBytes("UTF-8").length/8));
         picVo.setPicBin(vo.getPicBin());
         map.put("pic", picVo);
-        buffer = FreemarkUtil.generateXmlByTemplate(map, picXml);
-        String cleanXml  = "<"+buffer.substring(buffer.indexOf("<")+1); //去掉奇怪的字符
+        buffer = freemarkUtil.generateXmlByTemplate(map, picXml);
+        String cleanXml = "<" + buffer.substring(buffer.indexOf("<") + 1); //去掉奇怪的字符
         int num = cleanXml.getBytes("UTF-8").length;//计算出xml体// 的长度
-        String head = "SHCS" + ((DataVo)map.get("data")).getNo() + new DecimalFormat("00000000").format(num);
-        String bufferStr = head.trim() +cleanXml.trim();
-        logger.info("the date to write ：{}", buffer);
+        String head = "SHCS" + ((DataVo) map.get("data")).getNo() + new DecimalFormat("00000000").format(num);
+        String bufferStr = head.trim() + cleanXml.trim();
+        logger.info("the date to write ：{}", bufferStr);
         socket.getOutputStream().write(bufferStr.getBytes("UTF-8"));//写入xml体
-        socket.getOutputStream().write(picVo.getPicBin().getBytes("UTF-8"));//写入图片数据
+        socket.getOutputStream().write(picVo.getPicBin().getBytes());//写入图片数据
         socket.shutdownOutput();
         //获取输入流
         is = socket.getInputStream();
@@ -166,7 +170,6 @@ public class SocketPushService {
         }
         return info.contains("Ret=\"1\"");
     }
-
 
 
 }

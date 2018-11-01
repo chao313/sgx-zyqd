@@ -21,6 +21,8 @@ public class HttpService {
 
     private String getPicAndStationVoLimitURL = "/picAndStation/queryByITotalWeightLimit";
 
+    private String getPicAndStationVoAllLimitURL = "/picAndStation/queryAllLimit";
+
     private String updatePicDataByIdURL = "/picAndStation/updateStatusByID";
 
     public List<PicAndStationVo> getPicAndStationVoLimit(String host, Integer limitWeight, Integer limit, String dataSource) throws IOException {
@@ -40,16 +42,33 @@ public class HttpService {
         return picAndStationVos;
     }
 
+    public List<PicAndStationVo> getPicAndStationVoAllLimit(String host, Integer limit, String dataSource) throws IOException {
+        String jsonStr = HttpClientUtils.doGet(host + getPicAndStationVoAllLimitURL + "/" + limit + "/" + dataSource, null);
+        List<PicAndStationVo> picAndStationVos = new ArrayList<>();
+        Response<List<PicAndStationVo>> response =
+                JSON.parseObject(jsonStr, new TypeReference<Response<List<PicAndStationVo>>>() {
+                });
+
+        if (response.getCode().equals(Code.System.OK)) {
+            logger.info("HttpService:getPicAndStationVoAllLimit -> SUCCCESS; vos:{}", response.getContent());
+            picAndStationVos = response.getContent();
+        } else if (response.getCode().equals(Code.System.FAIL)) {
+            logger.error("HttpService:getPicAndStationVoAllLimit -> FAIL; message:{}", response.getMsg());
+        }
+
+        return picAndStationVos;
+    }
+
     public Boolean updatePicDataById(String host, Integer id, String dataSource) throws IOException {
         String jsonStr = HttpClientUtils.doGet(host + updatePicDataByIdURL + "/" + id + "/" + dataSource, null);
         Boolean bool = false;
         Response<Boolean> response =
                 JSON.parseObject(jsonStr, new TypeReference<Response<Boolean>>() {
                 });
-        if (Code.System.OK.equals(response.getCode()) ) {
+        if (Code.System.OK.equals(response.getCode())) {
             logger.info("HttpService:updatePicDataById -> SUCCCESS; bool:{}", response.getContent());
             bool = response.getContent();
-        } else if ( Code.System.FAIL.equals(response.getCode())) {
+        } else if (Code.System.FAIL.equals(response.getCode())) {
             logger.error("HttpService:updatePicDataById -> FAIL; message:{}", response.getMsg());
 
         }

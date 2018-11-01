@@ -48,4 +48,28 @@
         AND sgx_pic_data.isSended = 0 AND   tmp.szVehicleLicense <![CDATA[  <> ]]> '' AND iTotalWeight > #{limitWeight}
    </select>
 
+    <select id="queryAllLimit"
+            parameterType="java.lang.Integer"
+            resultType="cn.sgx.zyqd.mybatis.vo.PicAndStationVo">
+        SELECT
+        TOP ${limit}
+        [dtPassTime] AS dtPassTime ,
+        iLane AS iLane ,
+        iTotalWeight AS iTotalWeight ,
+        szVehicleLicense AS szVehicleLicense,
+        sgx_pic_data.id AS id,
+        sgx_pic_data.pic_bin AS pic_bin
+        from(
+        SELECT
+         [dtPassTime]
+        ,[iLane]
+        ,[iTotalWeight]
+        ,[szVehicleLicense]
+        FROM [WOpenFerry].[dbo].[ta_StationData]
+        WHERE CONVERT(VARCHAR(100),[WOpenFerry].[dbo].[ta_StationData].[dtPassTime],112) = CONVERT(VARCHAR(100),GETDATE(),112)
+        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense =  SUBSTRING(sgx_pic_data.pic_name,10,7)
+        AND sgx_pic_data.isSended = 0 AND   tmp.szVehicleLicense <![CDATA[  <> ]]> '' AND CHARINDEX('黄',sgx_pic_data.pic_name) > 0
+   </select>
+
+
 </mapper>

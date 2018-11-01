@@ -19,10 +19,14 @@ public class PicAndStationService {
     }
 
 
-    public List<PicAndStationVo> queryByITotalWeightLimit(Integer limitWeight,Integer limit) {
+    public List<PicAndStationVo> queryByITotalWeightLimit(Integer limitWeight, Integer limit) {
         return dao.queryByITotalWeightLimit(limitWeight, limit);
     }
 
+
+    public List<PicAndStationVo> queryAllLimit(Integer limit) {
+        return dao.queryAllLimit(limit);
+    }
 
 
 }

@@ -42,11 +42,15 @@ jdbc198:
 pic:
   path: D:\result\192.168.0.195\Record\
   type: .jpg
+  del:
+   day: 7
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?
 #  push: 0 0/1 * * * *
   push: 0/10 * * * * *
+  delPic: 0 0 0 15 * ?
+  delPicInSql: 0 0 0 15 * ?
 
 
 ##车道程序无用 -前置机无用 - 为了程序正常加载
@@ -59,6 +63,7 @@ socket:
   xml:
     data: data.xml
     pic: pic.xml
+    path: /Users/sgx/sgx_woekspace/sgx_zyqd/src/main/resources
 
 ##web 机器所用 其他的不需要
 http:
@@ -68,4 +73,4 @@ http:
 #  host: http://192.168.1.4:65500/chao
 
 control:
-  picpush: false
+  picpush: true

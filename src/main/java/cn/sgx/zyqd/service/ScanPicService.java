@@ -20,6 +20,8 @@ public class ScanPicService {
     private String picPath;
     @Value(value = "${pic.type}")
     private String suffix;
+    @Value(value = "${pic.del.day}")
+    private Integer day;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -58,7 +60,7 @@ public class ScanPicService {
                     vo.init();
                     picDataVos.add(vo);
 
-                    logger.info("[ ScanPicService ] the pic is dealing :{} ,the num is :{} , total:{}", fileNames[i], i , fileNames.length);
+                    logger.info("[ ScanPicService ] the pic is dealing :{} ,the num is :{} , total:{}", fileNames[i], i, fileNames.length);
 
                 }
             }
@@ -72,13 +74,17 @@ public class ScanPicService {
         return picPath;
     }
 
+    public Integer getDay() {
+        return day;
+    }
+
     /**
      * filter 数据
      */
     private String[] filterfileNames(String[] fileNames) {
         List<String> fileNameList = Arrays.asList(fileNames);
         List<String> todayPicNameList = picDataService.getTodayPicNames();
-        Collection exists= new ArrayList<String>(fileNameList);
+        Collection exists = new ArrayList<String>(fileNameList);
         exists.removeAll(todayPicNameList);
         String[] result = new String[exists.size()];
         exists.toArray(result);
@@ -86,4 +92,35 @@ public class ScanPicService {
 
     }
 
+
+    /**
+     * 删除N天前的数据
+     *
+     * @throws Exception
+     */
+    public void delPic() throws Exception {
+        File file = new File(picPath);
+        if (!file.isDirectory()) {
+            logger.error("[ ScanPicService ] the path is not dir :{}", picPath);
+            String message = MessageFormat.format("the path is not dir {0}", picPath);
+            throw new Exception(message);
+        } else {
+            String dayYyyyMMdd = DateUtils.getFormatDateTime(
+                    DateUtils.addDays(new Date(), -day), DateUtils.DATE_SHORT_FORMAT);
+            String[] fileNames = file.list();
+            for (int i = 0; i < fileNames.length; i++) {
+                String fileyyyMMdd = fileNames[i].substring(0, 7);//获取文件的年月日
+                if (fileyyyMMdd.compareTo(dayYyyyMMdd) < 0) {//such as 20121010 和 20181011
+                    boolean delete = new File(picPath + fileNames[i]).delete();
+                    if (true == delete) {
+                        logger.info("[ ScanPicService ] delete file SUCCESS : {} ", fileNames[i]);
+                    } else {
+                        logger.error("[ ScanPicService ] delete file FAIL : {} ", fileNames[i]);
+                    }
+                }
+            }
+        }
+
+    }
 }
+

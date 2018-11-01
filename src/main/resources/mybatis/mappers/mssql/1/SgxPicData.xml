@@ -33,6 +33,10 @@
         update [dbo].[sgx_pic_data] set  [isSended] = 1 where id = #{id};
     </update>
 
+    <delete id="deleteBeforeyyyyMMddDay" parameterType="java.lang.String">
+        DELETE  FROM [dbo].[sgx_pic_data] WHERE [dbo].[sgx_pic_data].[yyyyMMddTimeFromName]  <![CDATA[  < ]]> #{day}
+    </delete>
+
 
 
 </mapper>

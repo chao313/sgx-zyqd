@@ -16,4 +16,6 @@ public interface PicDataDAO {
     List<String> getTodayPicNames();
 
     int updateStatusByID(@Param(value = "id") Integer id);
+
+    void deleteBeforeyyyyMMddDay(@Param(value = "day") String day);
 }

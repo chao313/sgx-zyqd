@@ -86,7 +86,7 @@ public class PicTest {
             logger.info("imageBin bytes length:{}", imageBin.getBytes("UTF-8").length/8);
 
 //            logger.warn("fileContnet+image {}",fileContnet);
-            os.write(fileContnet.getBytes());
+            os.write(fileContnet.getBytes("UTF-8"));
             os.write(picBIn);
 
             socket.shutdownOutput();

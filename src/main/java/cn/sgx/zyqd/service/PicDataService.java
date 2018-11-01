@@ -30,11 +30,13 @@ public class PicDataService {
         return dao.getTodayPicNames();
     }
 
-   public boolean updateStatusByID( Integer id){
-        return  dao.updateStatusByID(id) >0 ? true:false;
+    public boolean updateStatusByID(Integer id) {
+        return dao.updateStatusByID(id) > 0 ? true : false;
     }
 
-
+    public void deleteBeforeyyyyMMddDay(String day) {
+        dao.deleteBeforeyyyyMMddDay(day);
+    }
 
 
 }

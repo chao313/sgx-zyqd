@@ -110,6 +110,31 @@ public class MyBatisController {
         return response;
     }
 
+
+    @DataSourceChange()
+    @ApiOperation(value = "查询当天的，没有发送成功的数据,限制查询的limit", notes = "查询当天的，没有发送成功的数据，限制查询的limit")
+    @GetMapping(value = "/picAndStation/queryAllLimit/{limit}/{dataSource}")
+    public Response getPicStationVoAllByLimit(@PathVariable(value = "limit") Integer limit,
+                                                      @PathVariable(value = "dataSource") String dataSource) {
+        logger.info("[ getPicStationVoByLimitWeight ] stationDataService/queryByITotalWeight ");
+        Response<List<PicAndStationVo>> response = new Response<>();
+        try {
+            response.setCode(Code.System.OK);
+            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+            List<PicAndStationVo> vos =
+                    picAndStationService.queryAllLimit(limit);
+            logger.info("[ queryByITotalWeightLimit : PicAndStationVo  ]成功 vos:{}", vos);
+            response.setContent(vos);
+
+        } catch (Exception e) {
+            response.setCode(Code.System.FAIL);
+            response.setMsg(e.toString());
+            response.addException(e);
+            logger.error("[queryByITotalWeightLimit ]FAIL path:{}", e.getMessage(), e);
+        }
+        return response;
+    }
+
     @DataSourceChange()
     @ApiOperation(value = "根据id来更新picAndStation的发送状态", notes = "根据id来更新picAndStation的发送状态")
     @GetMapping(value = "/picAndStation/updateStatusByID/{id}/{dataSource}")

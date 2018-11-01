@@ -55,7 +55,7 @@ public class SocketPushTimer {
                 try {
                     logger.info(" {} : [Timer Task ] [ Socket Push ] ", dataSource);
                     List<PicAndStationVo> picAndStationVos =
-                            httpService.getPicAndStationVoLimit(host, limitWeight, limit, dataSource);
+                            httpService.getPicAndStationVoAllLimit(host, limit, dataSource);
                     List<Integer> pushResults = null;
                     pushResults = socketPushService.push(picAndStationVos);
                     pushResults.stream().forEach(id -> {

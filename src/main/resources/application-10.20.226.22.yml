@@ -42,6 +42,8 @@ jdbc198:
 pic:
   path: D:\result\192.168.0.195\Record\
   type: .jpg
+  del:
+    day: 7
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?
@@ -56,10 +58,11 @@ socket:
   ip: 106.14.225.153
   port:
     server: 7712
-    local: 65501
+    local: 7712
   xml:
-     data: data.xml
-     pic: pic.xml
+    data: data.xml
+    pic: pic.xml
+    path: D:/sgx/xml/
 
 ##web 机器所用 其他的不需要
 http:

@@ -1,0 +1,71 @@
+server:
+  port: 65500
+  context-path: /chao
+
+#数据源
+jdbc:
+  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://127.0.0.1:1401;DatabaseName=WOpenFerry
+  userName: sa
+  password: Ys20140913!
+
+
+#数据源
+jdbc195:
+  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://127.0.0.1:1401;DatabaseName=WOpenFerry
+  userName: sa
+  password: Ys20140913!
+
+#数据源
+jdbc196:
+  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://127.0.0.1:1401;DatabaseName=WOpenFerry
+  userName: sa
+  password: Ys20140913!
+
+jdbc197:
+  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://127.0.0.1:1401;DatabaseName=WOpenFerry
+  userName: sa
+  password: Ys20140913!
+
+jdbc198:
+  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://127.0.0.1:1401;DatabaseName=WOpenFerry
+  userName: sa
+  password: Ys20140913!
+
+
+
+##前置机无用和web无用
+pic:
+  path: D:\result\192.168.0.195\Record\
+  type: .jpg
+##永远不执行 每月的15号执行000
+timer:
+  scandir: 0 0 0 15 * ?
+#  push: 0 0/1 * * * *
+  push: 0/10 * * * * *
+
+
+##车道程序无用 -前置机无用 - 为了程序正常加载
+socket:
+  stationID: 3211110060
+  ip: 106.14.225.153
+  port:
+    server: 7712
+    local: 7712
+  xml:
+    data: data.xml
+    pic: pic.xml
+
+##web 机器所用 其他的不需要
+http:
+  limitWeight: 49000
+  limit: 5
+  host: http://localhost:65500/chao
+#  host: http://192.168.1.4:65500/chao
+
+control:
+  picpush: false

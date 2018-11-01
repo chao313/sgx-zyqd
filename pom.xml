@@ -87,12 +87,21 @@
 
         <!--
         https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+
+        sqlserver2017
         -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
         <!--<dependency>-->
-        <!--<groupId>com.microsoft.sqlserver</groupId>-->
-        <!--<artifactId>sqljdbc4</artifactId>-->
-        <!--<version>4.0</version>-->
+            <!--<groupId>com.microsoft.sqlserver</groupId>-->
+            <!--<artifactId>mssql-jdbc</artifactId>-->
+            <!--<version>7.1.0.jre8-preview</version>-->
+            <!--<scope>test</scope>-->
         <!--</dependency>-->
+
 
         <!--
         为了低级的sqlserver
@@ -100,21 +109,26 @@
         -->
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <!-- https://mvnrepository.com/artifact/com.microsoft.jdbc.sqlserver/msbase -->
-        <dependency>
-            <groupId>sql2000</groupId>
-            <artifactId>msbase</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>sql2000</groupId>
-            <artifactId>msutil</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>sql2000</groupId>
-            <artifactId>mssqlserver</artifactId>
-            <version>1.0</version>
-        </dependency>
+
+
+        <!--
+        sqlserver2000
+        -->
+        <!--<dependency>-->
+            <!--<groupId>sql2000</groupId>-->
+            <!--<artifactId>msbase</artifactId>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>sql2000</groupId>-->
+            <!--<artifactId>msutil</artifactId>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>sql2000</groupId>-->
+            <!--<artifactId>mssqlserver</artifactId>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
 
         <!--
         lombok

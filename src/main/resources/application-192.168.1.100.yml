@@ -49,6 +49,10 @@ timer:
   scandir: 0 0 0 15 * ?
   push: 0 0/1 * * * *
 #  push: 0/10 * * * * *
+  ##永远不执行
+  delPic: 0 0 0 15 * ?
+  ##永远不执行
+  delPicInSql: 0 0 0 15 * ?
 
 
 ##车道程序无用 -前置机无用 - 为了程序正常加载
@@ -71,4 +75,4 @@ http:
   host: http://192.168.1.4:65500/chao
 
 control:
-  picpush: false
+  picpush: true

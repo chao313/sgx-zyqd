@@ -53,8 +53,8 @@
             resultType="cn.sgx.zyqd.mybatis.vo.PicAndStationVo">
         SELECT
         TOP ${limit}
-        [dtPassTime] AS dtPassTime ,
         iLane AS iLane ,
+        [dtPassTime] AS dtPassTime ,
         iTotalWeight AS iTotalWeight ,
         szVehicleLicense AS szVehicleLicense,
         sgx_pic_data.id AS id,

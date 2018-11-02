@@ -12,7 +12,7 @@ public class PicAndStationVo {
     private Timestamp dtPassTime; //经过时间
     private Integer iTotalWeight; //总重
     private String szVehicleLicense; //车牌
-    private String picBin;//图片数据
+    private byte[] picBin;//图片数据
 
     @Override
     public String toString() {

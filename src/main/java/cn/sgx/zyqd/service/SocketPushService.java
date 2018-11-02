@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Inet4Address;
 import java.net.Socket;
@@ -108,7 +110,7 @@ public class SocketPushService {
             is = socket.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
             info = br.readLine();
-            logger.info("l am client , server info is {}", info);
+            logger.info("l am socketPushData , server info is {}", info);
             logger.info("push station end ：{}", vo.getSzVehicleLicense());
             return info.contains("Ret=\"1\"");
         } catch (Exception e) {
@@ -142,25 +144,25 @@ public class SocketPushService {
         }
         logger.info("push pic start ：{}", vo.getSzVehicleLicense());
         PicVo picVo = new PicVo();
-        picVo.setByteLength(String.valueOf(vo.getPicBin().getBytes("UTF-8").length/8));
+        picVo.setByteLength(String.valueOf(vo.getPicBin().length));
         picVo.setPicBin(vo.getPicBin());
         map.put("pic", picVo);
         buffer = freemarkUtil.generateXmlByTemplate(map, picXml);
         String cleanXml = "<" + buffer.substring(buffer.indexOf("<") + 1); //去掉奇怪的字符
+        cleanXml = buffer.substring(0, buffer.lastIndexOf(">")) + ">";
         int num = cleanXml.getBytes("UTF-8").length;//计算出xml体// 的长度
         String head = "SHCS" + ((DataVo) map.get("data")).getNo() + new DecimalFormat("00000000").format(num);
         String bufferStr = head.trim() + cleanXml.trim();
         logger.info("the date to write ：{}", bufferStr);
         socket.getOutputStream().write(bufferStr.getBytes("UTF-8"));//写入xml体
-        socket.getOutputStream().write(picVo.getPicBin().getBytes());//写入图片数据
+        socket.getOutputStream().write(picVo.getPicBin());//写入图片数据
+        this.base64StringToImage(picVo.getPicBin());
         socket.shutdownOutput();
         //获取输入流
         is = socket.getInputStream();
         br = new BufferedReader(new InputStreamReader(is));
-        info = null;
-        while ((info = br.readLine()) != null) {
-            logger.info("l am client , server info is {}" + info);
-        }
+        info = br.readLine();
+        logger.info("l am socketPushPic , server info is {}" + info);
         logger.info("push pic end ：{}", vo.getSzVehicleLicense());
         if (socket.isClosed() == false) {
             //关闭资源
@@ -169,6 +171,20 @@ public class SocketPushService {
             socket.close();
         }
         return info.contains("Ret=\"1\"");
+    }
+
+    static int i = 1;
+
+    static void base64StringToImage(byte[] bytes) {
+
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+            BufferedImage bi1 = ImageIO.read(bais);
+            File w2 = new File(i++ + ".jpg");// 可以是jpg,png,gif格式
+            ImageIO.write(bi1, "jpg", w2);// 不管输出什么格式图片，此处不需改动
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

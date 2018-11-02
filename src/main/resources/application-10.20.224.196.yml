@@ -9,6 +9,32 @@ jdbc:
   userName: sa
   password: coing
 
+#数据源
+jdbc195:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+#数据源
+jdbc196:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+jdbc197:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+jdbc198:
+  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
+  url: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
 pic:
   path: D:\result\192.168.0.196\Record\
   type: .jpg
@@ -17,10 +43,14 @@ pic:
 timer:
   scandir: 0 0/1 * * * *
 ##每分钟执行一次，如果当天有文件增加，就保存
-  ##每月15号执行
+  ##每月不执行
   push: 0 0 0 15 * ?
+  ##每分钟扫描一次，删除前7天的图片
+  delPic: 0 0/1 * * * *
+  ##每分钟扫描一次，删除前7天的图片in sql
+  delPicInSql: 0 0/1 * * * *
 
-##车道程序无用 - 为了程序正常加载
+##车道程序无用 -前置机无用 - 为了程序正常加载
 socket:
   stationID: 3211110060
   ip: 106.14.225.153
@@ -34,9 +64,10 @@ socket:
 
 ##web 机器所用 其他的不需要
 http:
-  limitWeigeht: 4900
+  limitWeight: 490
   limit: 5
-  host: http://localhost:65500/chao
+  #  host: http://localhost:65500/chao
+  host: http://192.168.1.4:65500/chao
 
 control:
   picpush: false

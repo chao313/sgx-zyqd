@@ -51,10 +51,15 @@ public class SocketPushService {
 
     public List<Integer> push(List<PicAndStationVo> vos) throws Exception {
         List<Integer> ids = new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
+
         vos.stream().forEach(vo -> {
             try {
-                boolean dataResult = this.socketPushData(vo, map);
+                Map<String, Object> map = new HashMap<>();
+                DataVo dataVo = new DataVo();
+                BeanUtils.copyProperties(vo, dataVo);
+                dataVo.init(stationID, vo.getILane(), vo.getITotalWeight());
+                map.put("data", dataVo);
+                boolean dataResult = this.socketPushData(dataVo, map);
                 boolean picResult = false;
                 if (picpush == true) {
                     //如果开启图片传输，就传输
@@ -75,14 +80,12 @@ public class SocketPushService {
 
 
     /**
-     * 传data
-     *
-     * @param vo
+     * @param dataVo
      * @param map
      * @return
      * @throws Exception
      */
-    public Boolean socketPushData(PicAndStationVo vo, Map map) throws Exception {
+    public Boolean socketPushData(DataVo dataVo, Map map) throws Exception {
         try {
             if (null == socket || socket.isClosed()) {
                 socket = new Socket(ip, port);
@@ -91,11 +94,8 @@ public class SocketPushService {
             InputStream is = null;
             BufferedReader br = null;
             String info = null;
-            logger.info("push station start ：{}", vo.getSzVehicleLicense());
-            DataVo dataVo = new DataVo();
-            BeanUtils.copyProperties(vo, dataVo);
-            dataVo.init(stationID, vo.getILane(), vo.getITotalWeight());
-            map.put("data", dataVo);
+            logger.info("push station start ：{}", dataVo.getSzVehicleLicense());
+
             buffer = freemarkUtil.generateXmlByTemplate(map, dataXml);
             String cleanXml = "<" + buffer.substring(buffer.indexOf("<") + 1);
             int num = cleanXml.getBytes("UTF-8").length;
@@ -111,7 +111,7 @@ public class SocketPushService {
             br = new BufferedReader(new InputStreamReader(is));
             info = br.readLine();
             logger.info("l am socketPushData , server info is {}", info);
-            logger.info("push station end ：{}", vo.getSzVehicleLicense());
+            logger.info("push station end ：{}", dataVo.getSzVehicleLicense());
             return info.contains("Ret=\"1\"");
         } catch (Exception e) {
             e.printStackTrace();

@@ -32,7 +32,7 @@ public class DataVo {
     public DataVo init(String stationID, Integer iLane, Integer iTotalWeight) throws Exception {
 
         if (null == iLane || null == dtPassTime || null == iTotalWeight || null == szVehicleLicense) {
-            String message = MessageFormat.format("DataVo init失败{1}", this.toString());
+            String message = MessageFormat.format("DataVo init失败{0}", this.toString());
             throw new Exception(message);
         }
 

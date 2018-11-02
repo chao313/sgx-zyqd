@@ -1,9 +1,9 @@
 ##控制使用哪个配置
 spring:
      profiles:
-       active: local.test
+#       active: local.test
 #       active: 192.168.1.100.test
 #       active: 10.20.226.22
-#       active: 10.20.224.195
+       active: 10.20.226.22
 #        active: dev
 

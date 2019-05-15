@@ -28,8 +28,8 @@ public class ScanDirAndDelPicTimer {
     public void task() {
         try {
             scanPicService.delPic();
-            logger.info("[Timer Task ] sacn dir:{} delete before {} day files ",
-                    scanPicService.getPicPath(), scanPicService.getDay());
+            logger.info("[Timer Task ] sacn dir:{} delete before {} hour files ",
+                    scanPicService.getPicPath(), scanPicService.getHour());
         } catch (Exception e) {
             logger.error("[Timer Task ] sacn dir fail:{}", scanPicService.getPicPath(), e);
         }

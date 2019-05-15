@@ -1,38 +1,81 @@
-## dev环境使用是配置
 server:
-  port: 8082
+  port: 65500
   context-path: /chao
 
 #数据源
 jdbc:
-  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-  url: jdbc:sqlserver://10.20.226.22:1433;databaseName=BakLaneDB
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
 
+
+#数据源
+jdbc195:
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.195:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+#数据源
+jdbc196:
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+jdbc197:
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.197:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+jdbc198:
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.198:1433;DatabaseName=WOpenFerry
+  userName: sa
+  password: coing
+
+
+
+##前置机无用和web无用
 pic:
-  path: D:\result\192.168.0.195\
+#  path: D:\result\192.168.0.195\Record\
+  path: /Users/sgx/Desktop/Record/
   type: .jpg
+  del:
+    hour: 1
+    day: 7
+##永远不执行 每月的15号执行000
 timer:
-  scandir: 0 0/1 * * * *
-##每分钟执行一次，如果当天有文件增加，就保存
+  scandir: 0 0 0 15 * ?
+  ##每月15号执行
+  push: 0 0 0 15 * ?
+  #  push: 0/10 * * * * *
+  ##永远不执行
+  delPic: 0/1 * * * * ?
+  ##永远不执行
+  delPicInSql: 0 0 0 15 * ?
 
 
-##车道程序无用 - 为了程序正常加载
+##车道程序无用 -前置机无用 - 为了程序正常加载
 socket:
   stationID: 3211110060
   ip: 106.14.225.153
   port:
     server: 7712
-    local: 65500
+    local: 7712
   xml:
     data: data.xml
     pic: pic.xml
+    path: D:/sgx/xml/
 
+##web 机器所用 其他的不需要
+http:
+  limitWeight: 490
+  limit: 5
+  #  host: http://localhost:65500/chao
+  host: http://192.168.1.4:65500/chao
 
-
-
-
-
-
-
+control:
+  picpush: false

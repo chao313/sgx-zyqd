@@ -4,6 +4,6 @@ spring:
 #       active: local.test
 #       active: 192.168.1.100.test
 #       active: 10.20.226.22
-       active: 10.20.226.22
-#        active: dev
+#       active: 10.20.226.22
+        active: dev
 

@@ -39,6 +39,7 @@ pic:
   path: D:\result\192.168.0.195\Record\
   type: .jpg
   del:
+    hour: 1
     day: 7
 timer:
   scandir: 0 0/1 * * * *

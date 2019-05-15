@@ -44,7 +44,7 @@
         ,[szVehicleLicense]
         FROM [WOpenFerry].[dbo].[ta_StationData]
         WHERE CONVERT(VARCHAR(100),[WOpenFerry].[dbo].[ta_StationData].[dtPassTime],112) = CONVERT(VARCHAR(100),GETDATE(),112)
-        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense =  sgx_pic_data.pic_name
+        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense =  sgx_pic_data.szVehicleLicenseFromName
         AND sgx_pic_data.isSended = 0 AND   tmp.szVehicleLicense <![CDATA[  <> ]]> '' AND iTotalWeight > #{limitWeight}
    </select>
 
@@ -67,8 +67,8 @@
         ,[szVehicleLicense]
         FROM [WOpenFerry].[dbo].[ta_StationData]
         WHERE CONVERT(VARCHAR(100),[WOpenFerry].[dbo].[ta_StationData].[dtPassTime],112) = CONVERT(VARCHAR(100),GETDATE(),112)
-        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense =  sgx_pic_data.pic_name
-        AND sgx_pic_data.isSended = 0 AND   tmp.szVehicleLicense <![CDATA[  <> ]]> '' AND CHARINDEX('黄',sgx_pic_data.pic_name) > 0
+        ) as tmp join [WOpenFerry].[dbo].[sgx_pic_data] as sgx_pic_data  on tmp.szVehicleLicense =  sgx_pic_data.szVehicleLicenseFromName
+        AND sgx_pic_data.isSended = 0 AND   tmp.szVehicleLicense <![CDATA[  <> ]]> '' AND CHARINDEX('黄',sgx_pic_data.szVehicleLicenseFromName) > 0
    </select>
 
 

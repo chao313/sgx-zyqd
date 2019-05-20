@@ -4,37 +4,37 @@ server:
 
 #数据源
 jdbc:
-  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
-  url: jdbc:microsoft:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://localhost:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
 
-
 #数据源
 jdbc195:
-  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
-  url: jdbc:microsoft:sqlserver://10.20.224.195:1433;DatabaseName=WOpenFerry
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.195:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
 
 #数据源
 jdbc196:
-  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
-  url: jdbc:microsoft:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.196:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
 
 jdbc197:
-  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
-  url: jdbc:microsoft:sqlserver://10.20.224.197:1433;DatabaseName=WOpenFerry
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.197:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
 
 jdbc198:
-  driver-class-name: com.microsoft.jdbc.sqlserver.SQLServerDriver
-  url: jdbc:microsoft:sqlserver://10.20.224.198:1433;DatabaseName=WOpenFerry
+  driver-class-name: net.sourceforge.jtds.jdbc.Driver
+  url: jdbc:jtds:sqlserver://10.20.224.198:1433;DatabaseName=WOpenFerry
   userName: sa
   password: coing
+
 
 
 

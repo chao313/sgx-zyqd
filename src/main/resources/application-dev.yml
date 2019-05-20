@@ -53,7 +53,7 @@ timer:
   push: 0 0 0 15 * ?
   #  push: 0/10 * * * * *
   ##永远不执行
-  delPic: 0/1 * * * * ?
+  delPic: 0 0/1 * * * ?
   ##永远不执行
   delPicInSql: 0 0 0 15 * ?
 

@@ -48,12 +48,12 @@ pic:
     day: 7
 ##永远不执行 每月的15号执行000
 timer:
-  scandir: 0 0 0 15 * ?
+  scandir: 0 0/1 * * * *
   ##每月15号执行
   push: 0 0 0 15 * ?
   #  push: 0/10 * * * * *
   ##永远不执行
-  delPic: 0 0/1 * * * ?
+  delPic: 0 0 0/1 * * ?
   ##永远不执行
   delPicInSql: 0 0 0 15 * ?
 

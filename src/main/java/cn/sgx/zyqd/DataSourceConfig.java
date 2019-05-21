@@ -10,23 +10,24 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig195 {
+public class DataSourceConfig {
 
-    @Value(value = "${jdbc195.driver-class-name}")
+    @Value(value = "${jdbc.driver-class-name}")
     private String jdbcDriverClassName;
 
-    @Value(value = "${jdbc195.url}")
+    @Value(value = "${jdbc.url}")
     private String jdbcUrl;
 
-    @Value(value = "${jdbc195.userName}")
+    @Value(value = "${jdbc.userName}")
     private String userName;
 
-    @Value(value = "${jdbc195.password}")
+    @Value(value = "${jdbc.password}")
     private String password;
 
 
-    @Bean(autowire = Autowire.BY_NAME,value = "dataSource195")
-    public DataSource generateDataSource(){
+    @Bean(autowire = Autowire.BY_NAME, value = "dataSource")
+    @Primary
+    public DataSource generateDataSource() {
 
         BoneCPDataSource boneCPDataSource = new BoneCPDataSource();
         // 数据库驱动

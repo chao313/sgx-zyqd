@@ -44,6 +44,7 @@ pic:
   type: .jpg
   del:
     day: 7
+    hour: 1
 ##永远不执行 每月的15号执行000
 timer:
   scandir: 0 0 0 15 * ?

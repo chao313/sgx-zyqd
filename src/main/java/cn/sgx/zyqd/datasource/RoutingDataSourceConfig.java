@@ -12,6 +12,8 @@ import java.util.Map;
 
 @Configuration
 public class RoutingDataSourceConfig {
+    @Resource(name = "dataSource")
+    DataSource dataSource;
     @Resource(name = "dataSource195")
     DataSource dataSource195;
     @Resource(name = "dataSource196")
@@ -21,7 +23,7 @@ public class RoutingDataSourceConfig {
     @Resource(name = "dataSource198")
     DataSource dataSource198;
 
-    @Bean(autowire = Autowire.BY_NAME,value = "routingDataSource")
+    @Bean(autowire = Autowire.BY_NAME, value = "routingDataSource")
     public AbstractRoutingDataSource createMapperScannerConfigurer() {
         AbstractRoutingDataSource routingDataSource = new AbstractRoutingDataSource() {
             @Override
@@ -35,7 +37,7 @@ public class RoutingDataSourceConfig {
         targetDataSources.put("dataSource197", dataSource197);
         targetDataSources.put("dataSource198", dataSource198);
         routingDataSource.setTargetDataSources(targetDataSources);
-        routingDataSource.setDefaultTargetDataSource(dataSource195);
+        routingDataSource.setDefaultTargetDataSource(dataSource);
         return routingDataSource;
     }
 

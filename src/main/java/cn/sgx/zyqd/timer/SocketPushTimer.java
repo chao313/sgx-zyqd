@@ -1,10 +1,7 @@
 package cn.sgx.zyqd.timer;
 
 import cn.sgx.zyqd.mybatis.vo.PicAndStationVo;
-import cn.sgx.zyqd.mybatis.vo.PicDataVo;
 import cn.sgx.zyqd.service.HttpService;
-import cn.sgx.zyqd.service.PicDataService;
-import cn.sgx.zyqd.service.ScanPicService;
 import cn.sgx.zyqd.service.SocketPushService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 定时推送图片数据，并且改变推送标识
+ */
 @Configuration
 @EnableScheduling
 public class SocketPushTimer {

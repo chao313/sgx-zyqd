@@ -12,6 +12,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
+/**
+ * 定时扫描图片文件 -> 入库
+ */
 @Configuration
 @EnableScheduling
 public class ScanDirAndSavePicTimer {

@@ -13,6 +13,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Date;
 
+/**
+ * 定时删除数据库中图片数据
+ */
 @Configuration
 @EnableScheduling
 public class DeletePicDataInSqlTimer {

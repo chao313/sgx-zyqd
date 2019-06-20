@@ -61,6 +61,7 @@ public class MyBatisController {
 //        return response;
 //    }
 //
+
     @DataSourceChange()
     @ApiOperation(value = "查询当天的，没有发送成功的数据", notes = "查询当天的，没有发送成功的数据")
     @GetMapping(value = "/picAndStation/queryByITotalWeight/{limitWeight}/{dataSource}")
@@ -85,6 +86,13 @@ public class MyBatisController {
         return response;
     }
 
+    /**
+     * 由SocketPushTimer调用的，请求查询当天的，没有发送成功的数据
+     * @param limitWeight
+     * @param limit
+     * @param dataSource
+     * @return
+     */
     @DataSourceChange()
     @ApiOperation(value = "查询当天的，没有发送成功的数据,限制查询的limit", notes = "查询当天的，没有发送成功的数据，限制查询的limit")
     @GetMapping(value = "/picAndStation/queryByITotalWeightLimit/{limitWeight}/{limit}/{dataSource}")
@@ -111,6 +119,12 @@ public class MyBatisController {
     }
 
 
+    /**
+     * 由SocketPushTimer调用的 查询当天的，没有发送成功的数据,限制查询的limit
+     * @param limit
+     * @param dataSource
+     * @return
+     */
     @DataSourceChange()
     @ApiOperation(value = "查询当天的，没有发送成功的数据,限制查询的limit", notes = "查询当天的，没有发送成功的数据，限制查询的limit")
     @GetMapping(value = "/picAndStation/queryAllLimit/{limit}/{dataSource}")
@@ -135,6 +149,12 @@ public class MyBatisController {
         return response;
     }
 
+    /**
+     *  由SocketPushTimer调用的 根据id来更新picAndStation的发送状态
+     * @param id
+     * @param dataSource
+     * @return
+     */
     @DataSourceChange()
     @ApiOperation(value = "根据id来更新picAndStation的发送状态", notes = "根据id来更新picAndStation的发送状态")
     @GetMapping(value = "/picAndStation/updateStatusByID/{id}/{dataSource}")
@@ -183,46 +203,46 @@ public class MyBatisController {
 //    }
 
 
-    @ApiOperation(value = "只扫描当天图片.jpg结尾", notes = "只扫描当天图片.jpg结尾")
-    @GetMapping(value = "/scanPicService/scanDir")
-    public Response scanPicService_scanDir() {
-        logger.info("[ 扫描文件夹 ]scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
-        Response<List<PicDataVo>> response = new Response<List<PicDataVo>>();
-        try {
-            response.setCode(Code.System.OK);
-            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
-            List<PicDataVo> vos = scanPicService.scanDirAndGetTodayPicNotInSql();
-            response.setContent(vos);
-            logger.info("[ 扫描文件夹 ]SUCCESS vos:{}", vos);
-        } catch (Exception e) {
-            response.setCode(Code.System.FAIL);
-            response.setMsg(e.toString());
-            response.addException(e);
-            logger.error("[ 扫描文件夹 ]FAIL path:{}", scanPicService.getPicPath(), e);
-        }
-        return response;
-    }
-
-    @GetMapping(value = "/picDataService/savePicDataVos")
-    public Response picDataService_scanDir() {
-        logger.info("[ 扫描文件夹 && 存入数据库  ]scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
-        Response<List<PicDataVo>> response = new Response<List<PicDataVo>>();
-        try {
-            response.setCode(Code.System.OK);
-            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
-            List<PicDataVo> vos = scanPicService.scanDirAndGetTodayPicNotInSql();
-            logger.info("[ 扫描文件夹 ]SUCCESS vos:{}", vos);
-            picDataService.savePicDataVos(vos);
-            logger.info("[ 存入数据库 ]SUCCESS vos:{}", vos);
-            response.setContent(vos);
-        } catch (Exception e) {
-            response.setCode(Code.System.FAIL);
-            response.setMsg(e.toString());
-            response.addException(e);
-            logger.error("[ 扫描文件夹 && 存入数据库  ]path:{}", scanPicService.getPicPath(), e);
-        }
-        return response;
-    }
+//    @ApiOperation(value = "只扫描当天图片.jpg结尾", notes = "只扫描当天图片.jpg结尾")
+//    @GetMapping(value = "/scanPicService/scanDir")
+//    public Response scanPicService_scanDir() {
+//        logger.info("[ 扫描文件夹 ]scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
+//        Response<List<PicDataVo>> response = new Response<List<PicDataVo>>();
+//        try {
+//            response.setCode(Code.System.OK);
+//            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+//            List<PicDataVo> vos = scanPicService.scanDirAndGetTodayPicNotInSql();
+//            response.setContent(vos);
+//            logger.info("[ 扫描文件夹 ]SUCCESS vos:{}", vos);
+//        } catch (Exception e) {
+//            response.setCode(Code.System.FAIL);
+//            response.setMsg(e.toString());
+//            response.addException(e);
+//            logger.error("[ 扫描文件夹 ]FAIL path:{}", scanPicService.getPicPath(), e);
+//        }
+//        return response;
+//    }
+//
+//    @GetMapping(value = "/picDataService/savePicDataVos")
+//    public Response picDataService_scanDir() {
+//        logger.info("[ 扫描文件夹 && 存入数据库  ]scanPicService/scanDirAndGetTodayPicNotInSql :{}", scanPicService.getPicPath());
+//        Response<List<PicDataVo>> response = new Response<List<PicDataVo>>();
+//        try {
+//            response.setCode(Code.System.OK);
+//            response.setMsg(Code.System.SERVER_SUCCESS_MSG);
+//            List<PicDataVo> vos = scanPicService.scanDirAndGetTodayPicNotInSql();
+//            logger.info("[ 扫描文件夹 ]SUCCESS vos:{}", vos);
+//            picDataService.savePicDataVos(vos);
+//            logger.info("[ 存入数据库 ]SUCCESS vos:{}", vos);
+//            response.setContent(vos);
+//        } catch (Exception e) {
+//            response.setCode(Code.System.FAIL);
+//            response.setMsg(e.toString());
+//            response.addException(e);
+//            logger.error("[ 扫描文件夹 && 存入数据库  ]path:{}", scanPicService.getPicPath(), e);
+//        }
+//        return response;
+//    }
 
 
 }

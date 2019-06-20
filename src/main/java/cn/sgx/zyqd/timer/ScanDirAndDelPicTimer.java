@@ -12,6 +12,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
+/**
+ * 定时删除图片文件
+ */
 @Configuration
 @EnableScheduling
 public class ScanDirAndDelPicTimer {
